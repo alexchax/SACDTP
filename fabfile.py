@@ -23,8 +23,7 @@ env.hosts = [
     "slice315.pcvm1-1.instageni.wisc.edu",
   ]
 env.roledefs.update({
-    'client' : ["slice315.pcvm3-1.geni.case.edu", "slice315.pcvm3-1.instageni.metrodatacenter.com", "slice315.pcvm2-2.instageni.rnoc.gatech.edu"],
-    'server' : ["slice315.pcvm1-1.geni.it.cornell.edu"]
+    'client' : ["slice315.pcvm3-1.geni.case.edu", "slice315.pcvm3-1.instageni.metrodatacenter.com", "slice315.pcvm2-2.instageni.rnoc.gatech.edu"]
 })
 
 env.key_filename="./id_rsa"
