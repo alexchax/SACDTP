@@ -3,7 +3,7 @@ import socket
 
 def getDHT():
     DHT = {}
-    filename = "DHT1.txt"
+    filename = "DHT2.txt"
     try:
         with open(filename, "r") as DHTFile:
             for line in DHTFile:
@@ -12,12 +12,11 @@ def getDHT():
         return DHT
     except IOError:
         open(filename, 'a').close()
-        return DHT
 
 
 def updateDHT(DHT):
     print DHT
-    with open("DHT1.txt", "w") as DHTFile:
+    with open("DHT2.txt", "w") as DHTFile:
         for key in DHT:
             DHTFile.write(str(key) + " : " + str(DHT[key]) + "\n")
         DHTFile.close()
@@ -25,13 +24,13 @@ def updateDHT(DHT):
 
 class MyService(rpyc.Service):
     rpyc.Service.DHT = getDHT()
-    rpyc.Service.node_id = 0
-    rpyc.Service.neighbour_id = 50
+    rpyc.Service.node_id = 50
+    rpyc.Service.neighbour_id = 0
     rpyc.Service.neighbour_ip = "localhost"
     rpyc.Service.conn = None
-    rpyc.Service.port = 18862
+    rpyc.Service.neighbour_port = 18861
     try:
-        rpyc.Service.conn = rpyc.connect(rpyc.Service.neighbour_ip, rpyc.Service.port)
+        rpyc.Service.conn = rpyc.connect(rpyc.Service.neighbour_ip, rpyc.Service.neighbour_port)
     except socket.error:
         pass
     def on_connect(self):
@@ -42,16 +41,20 @@ class MyService(rpyc.Service):
 
     def exposed_get(self, key):
         print key
-        if rpyc.Service.node_id < key < rpyc.Service.neighbour_id:
+        if rpyc.Service.node_id > rpyc.Service.neighbour_id or rpyc.Service.node_id < key < rpyc.Service.neighbour_id:
             print "found " + str(key)
             try:
-                return rpyc.Service.DHT[key]
+                value = rpyc.Service.DHT[key]
             except KeyError:
-                return None
+                value = None
+            return value
         else:
             if rpyc.Service.conn:
                 print "next!"
+                print "key: " + str(key)
                 return rpyc.Service.conn.root.get(key)
+            else:
+                return None
 
     def exposed_put(self, key, value):
         if rpyc.Service.node_id < key < rpyc.Service.neighbour_id or rpyc.Service.node_id > rpyc.Service.neighbour_id:
@@ -61,9 +64,7 @@ class MyService(rpyc.Service):
             return True
         else:
             return rpyc.Service.conn.root.put(key, value)
-
-
 if __name__ == "__main__":
     from rpyc.utils.server import ThreadedServer
-    t = ThreadedServer(MyService, port=18861)
+    t = ThreadedServer(MyService, port=18862)
     t.start()
