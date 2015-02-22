@@ -25,11 +25,11 @@ def updateDHT(DHT):
 
 class MyService(rpyc.Service):
     rpyc.Service.DHT = getDHT()
-    rpyc.Service.node_id = 0
-    rpyc.Service.neighbour_id = 50
-    rpyc.Service.neighbour_ip = "localhost"
+    rpyc.Service.node_id = 50
+    rpyc.Service.neighbour_id = 0
+    rpyc.Service.neighbour_ip = "134.87.146.235"
     rpyc.Service.conn = None
-    rpyc.Service.port = 18862
+    rpyc.Service.port = 18861
     try:
         rpyc.Service.conn = rpyc.connect(rpyc.Service.neighbour_ip, rpyc.Service.port)
     except socket.error:

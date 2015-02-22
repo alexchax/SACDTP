@@ -10,14 +10,9 @@ def putValue(key, value, conn):
 
 
 def main():
-    mach = SshMachine("slice330.pcvm1-1.instageni.wisc.edu", user="root", keyfile=r"/id_rsa")
-    server = DeployedServer(mach)
-    try:
-        conn = server.classic_connect()
-    except socket.error:
-        conn = connect("localhost", 18861)
-    print putValue(15, 2, conn)
-    print getValue(15, conn)
+    conn = connect("10.19.1.11", 18861)
+    print putValue(52, 2, conn)
+    print getValue(52, conn)
 
 if __name__ == "__main__":
     main()
