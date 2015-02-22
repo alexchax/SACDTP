@@ -1,4 +1,4 @@
-from fabric.api import env, run
+from fabric.api import *
 env.hosts = [
   "slice330.pcvm3-1.geni.case.edu",
       "slice330.pcvm3-1.instageni.metrodatacenter.com",
@@ -21,13 +21,20 @@ env.hosts = [
     "slice330.pcvm4-1.utahddc.geniracks.net",
     "slice330.pcvm1-1.instageni.wisc.edu",
   ]
+env.roledefs.update({
+    'server' : ["slice330.pcvm3-1.geni.case.edu", "slice330.pcvm3-1.instageni.metrodatacenter.com", "slice330.pcvm2-2.instageni.rnoc.gatech.edu"],
+})
+
 
 env.key_filename="./id_rsa"
 env.use_ssh_config = True
 env.ssh_config_path = './ssh-config'
 
-def pingtest():
-    run('ping -c 3 www.yahoo.com')
+@roles('server')
+@parallel
+def setup_server():
+    put('server.py')
+    run('apt-get install -y rpyc')
 
 def uptime():
     run('uptime')
