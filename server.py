@@ -43,7 +43,8 @@ class MyService(rpyc.Service):
         "connecting to: " + str(rpyc.Service.neighbour_ip)
         rpyc.Service.conn = rpyc.connect(rpyc.Service.neighbour_ip, rpyc.Service.neighbour_port)
         conn = rpyc.Service.conn
-        rpyc.Service.node_id, rpyc.Service.neighbour_id, rpyc.Service.DHT, rpyc.Service.neighbour_ip = rpyc.Service.conn.root.connect(rpyc.Service.node_ip)
+        # ??????
+        rpyc.Service.node_id, rpyc.Service.neighbour_id, rpyc.Service.DHT, rpyc.Service.neighbour_ip = conn.root.connect(rpyc.Service.node_ip)
         print str(rpyc.Service.id) + str(rpyc.Service.neighbour_id) + str(rpyc.Service.DHT) + str(rpyc.Service.neighbour_ip)
         updateDHT(rpyc.Service.DHT)
     except socket.error:
