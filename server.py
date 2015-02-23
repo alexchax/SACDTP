@@ -60,10 +60,12 @@ class MyService(rpyc.Service):
         # if arg not set or connection is unable to be set dont connect to the DHT
         rpyc.Service.conn = None
         print "connection not found"
+    print rpyc.Service.conn
 
     # "exposed_-" allows other nodes to use a connection to call these functions
     def exposed_connect(self, node_ip):
         # connects a node to the Chord Scheme
+        print "connected to: " + node_ip
 
         # if the current node is the only one in the Chord Scheme use this
         if rpyc.Service.node_id == 0 and rpyc.Service.neighbour_id == rpyc.Service.Max:
