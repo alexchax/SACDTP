@@ -33,7 +33,7 @@ class MyService(rpyc.Service):
     if len(sys.argv) == 2:
         rpyc.Service.neighbour_ip = sys.argv[1]
     rpyc.Service.DHT = getDHT()
-    rpyc.Service.Max = 1000
+    rpyc.Service.Max = 10000
     rpyc.Service.node_id = 0
     rpyc.Service.node_ip = socket.gethostbyname(socket.gethostname())
     print rpyc.Service.node_ip
