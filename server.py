@@ -118,7 +118,7 @@ class MyService(rpyc.Service):
 
     def exposed_get(self, key):
         # returns the value that key stores
-        if not rpyc.Service.conn:
+        # if not rpyc.Service.conn:
             # try:
             #     #check to see if rpyc connection has been made
             #     rpyc.Service.conn = rpyc.connect(rpyc.Service.neighbour_ip, rpyc.Service.neighbour_port)
