@@ -34,10 +34,11 @@ class MyService(rpyc.Service):
     rpyc.Service.Max = 1000
     rpyc.Service.node_id = 0
     rpyc.Service.node_ip = socket.gethostbyname(socket.gethostname())
+    print rpyc.Service.node_ip
     rpyc.Service.neighbour_id = 100
     rpyc.Service.neighbour_ip = neighbour_ip
     rpyc.Service.conn = None
-    rpyc.Service.neighbour_port = 18862
+    rpyc.Service.neighbour_port = 18861
     try:
         "connecting to: " + str(rpyc.Service.neighbour_ip)
         rpyc.Service.conn = rpyc.connect(rpyc.Service.neighbour_ip, rpyc.Service.neighbour_port)
