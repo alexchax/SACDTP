@@ -70,14 +70,16 @@ class MyService(rpyc.Service):
             print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(rpyc.Service.neighbour_ip)
             return middle_id, 0, top_DHT, rpyc.Service.node_ip
         else:
+            n_id = 0
             if rpyc.Service.neighbour_id > rpyc.Service.node_id:
                 print "here"
                 middle_id = (rpyc.Service.neighbour_id - rpyc.Service.node_id)/2 + rpyc.Service.node_id
+                n_id = rpyc.Service.neighbour_id
                 rpyc.Service.neighbour_id = middle_id
             else:
                 print "here2"
                 middle_id = round((1000 - rpyc.Service.node_id)/2, 0) + rpyc.Service.node_id
-                rpyc.Service.neighbour_id = 0
+                n_id = 0
             print str(middle_id)
             top_DHT = {}
             bottom_DHT = {}
@@ -91,7 +93,7 @@ class MyService(rpyc.Service):
             rpyc.Service.neighbour_ip = node_ip
             updateDHT(rpyc.Service.DHT)
             print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(n_ip)
-            return middle_id, rpyc.Service.neighbour_id, top_DHT, n_ip
+            return middle_id, rpyc.Service.nid, top_DHT, n_ip
 
     def exposed_get_ip(self):
         return rpyc.Service.node_ip
