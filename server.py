@@ -37,6 +37,7 @@ class Node:
 
 
 class MyService(rpyc.Service):
+    print "doing this"
     rpyc.Service.node = Node()
     rpyc.Service.node.neighbour_ip = None
     # arg(1) - ip of the node you want to connect to
@@ -54,6 +55,7 @@ class MyService(rpyc.Service):
     rpyc.Service.node.conn = None
     # port that the server is running on - always 18861
     rpyc.Service.node.neighbour_port = 18861
+    print "done doing this"
 
     print "connecting to: " + str(rpyc.Service.node.neighbour_ip)
     try:
