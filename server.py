@@ -126,7 +126,10 @@ class MyService(rpyc.Service):
             rpyc.Service.node.neighbour_ip = node_ip
             # update cur node DHT with the bottom of DHT
             updateDHT(rpyc.Service.node.DHT)
-            rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
+            try:
+                rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
+            except socket.error:
+                rpyc.Service.node.conn = None
             # debug message
             print str(rpyc.Service.node.node_id) + " " + str(rpyc.Service.node.neighbour_id) + " " + str(rpyc.Service.node.DHT) + " " + str(rpyc.Service.node.neighbour_ip) + " " + rpyc.Service.node.node_ip
             #return node_id, neighbour id, DHT, neighbour ip
@@ -167,7 +170,7 @@ class MyService(rpyc.Service):
             try:
                 # check if a connection is currently active
                 conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
-                print conn
+                print "getting connection in put"
             except socket.error:
                 conn = None
                 return False
