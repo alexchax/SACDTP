@@ -5,6 +5,8 @@ import sys
 print sys.argv
 if len(sys.argv) == 2:
     neighbour_ip = sys.argv[1]
+else:
+    neighbour_ip = None
 
 def getDHT():
     DHT = {}
