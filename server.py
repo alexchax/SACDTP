@@ -45,9 +45,9 @@ class MyService(rpyc.Service):
     rpyc.Service.conn = None
     # port that the server is running on - always 18861
     rpyc.Service.neighbour_port = 18861
+    print "connecting to: " + str(rpyc.Service.neighbour_ip)
     try:
         # try connecting to the server put in the args
-        print "connecting to: " + str(rpyc.Service.neighbour_ip)
         # setup connection using rpyc
         rpyc.Service.conn = rpyc.connect(rpyc.Service.neighbour_ip, rpyc.Service.neighbour_port)
         conn = rpyc.Service.conn
