@@ -66,9 +66,11 @@ class MyService(rpyc.Service):
             else:
                 bottom_DHT[key] = rpyc.Service.DHT[key]
         rpyc.Service.DHT = bottom_DHT
+        n_ip = rpyc.Service.neighbour_ip
         rpyc.Service.neighbour_ip = node_ip
         updateDHT(rpyc.Service.DHT)
-        return middle_id, rpyc.Service.neighbour_id, top_DHT, rpyc.Service.neighbour_ip
+        print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(rpyc.Service.n_ip)
+        return middle_id, rpyc.Service.neighbour_id, top_DHT, rpyc.Service.n_ip
 
     def exposed_get_ip(self):
         return rpyc.Service.node_ip
