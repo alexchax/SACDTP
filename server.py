@@ -42,25 +42,31 @@ class MyService(rpyc.Service):
     # ip of the current node
     rpyc.Service.node_ip = socket.gethostbyname(socket.gethostname())
     # neighbour id - the id of the next node in the DHT
-    rpyc.Service.neighbour_id = 1000
+    rpyc.Service.neighbour_id = rpyc.Service.Max
     rpyc.Service.conn = None
     # port that the server is running on - always 18861
     rpyc.Service.neighbour_port = 18861
     try:
-        # try connecting to the
+        # try connecting to the server put in the args
         print "connecting to: " + str(rpyc.Service.neighbour_ip)
+        # setup connection using rpyc
         rpyc.Service.conn = rpyc.connect(rpyc.Service.neighbour_ip, rpyc.Service.neighbour_port)
         conn = rpyc.Service.conn
-        # ??????
+        # uses the inital connection method to split up the DHT
         rpyc.Service.node_id, rpyc.Service.neighbour_id, rpyc.Service.DHT, rpyc.Service.neighbour_ip = conn.root.connect(rpyc.Service.node_ip)
+        # debug statement
         print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(rpyc.Service.neighbour_ip)
         updateDHT(rpyc.Service.DHT)
     except socket.error:
+        # if arg not set or connection is unable to be set dont connect to the DHT
         rpyc.Service.conn = None
         print "connection not found"
 
+    # "exposed_-" allows other nodes to use a connection to call these functions
     def exposed_connect(self, node_ip):
-        print node_ip
+        # connects a node to the Chord Scheme
+
+        # if the current node is the only one in the Chord Scheme use this
         if rpyc.Service.node_id == 0 and rpyc.Service.neighbour_id == rpyc.Service.Max:
             print "there"
             middle_id = rpyc.Service.Max/2
@@ -79,24 +85,28 @@ class MyService(rpyc.Service):
             return middle_id, 0, top_DHT, rpyc.Service.node_ip
         else:
             n_id = 0
+            # if current node is not the node connected to the "start" node
             if rpyc.Service.neighbour_id > rpyc.Service.node_id:
                 print "here"
                 middle_id = (rpyc.Service.neighbour_id - rpyc.Service.node_id)/2 + rpyc.Service.node_id
                 n_id = rpyc.Service.neighbour_id
                 rpyc.Service.neighbour_id = middle_id
+            # if current node is the last in the chord
             else:
                 print "here2"
                 middle_id = round((rpyc.Service.Max - rpyc.Service.node_id)/2, 0) + rpyc.Service.node_id
                 n_id = 0
-            print str(middle_id)
             top_DHT = {}
             bottom_DHT = {}
+            # cut the DHT in half
             for key in rpyc.Service.DHT:
                 if key > middle_id:
                     top_DHT[key] = rpyc.Service.DHT[key]
                 else:
                     bottom_DHT[key] = rpyc.Service.DHT[key]
+            #set the current nodes DHT as the bottom half
             rpyc.Service.DHT = bottom_DHT
+            # save cur nodes' neighbour
             n_ip = rpyc.Service.neighbour_ip
             rpyc.Service.neighbour_ip = node_ip
             updateDHT(rpyc.Service.DHT)
