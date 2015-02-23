@@ -2,8 +2,6 @@ import rpyc
 import socket
 import sys
 
-print sys.argv
-
 
 def getDHT():
     # pulls all values from a textfile and puts them into a DHT
@@ -95,7 +93,7 @@ class MyService(rpyc.Service):
             updateDHT(bottom_DHT)
             rpyc.Service.node.neighbour_ip = node_ip
             print str(rpyc.Service.node.node_id) + " " + str(rpyc.Service.node.neighbour_id) + " " + str(rpyc.Service.node.DHT) + " " + str(rpyc.Service.node.neighbour_ip) + " " + str(rpyc.Service.node.node_ip)
-            return middle_id, 0, top_DHT, node.node_ip
+            return middle_id, 0, top_DHT, rpyc.Service.node.node_ip
         else:
             n_id = 0
             # if current node is not the node connected to the "start" node
