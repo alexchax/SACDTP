@@ -1,7 +1,5 @@
 from rpyc import *
-import socket
-from rpyc.utils.zerodeploy import DeployedServer
-from plumbum import SshMachine
+import fileinput
 
 def getValue(key, conn):
     return conn.root.get(key)
@@ -12,7 +10,8 @@ def putValue(key, value, conn):
 def main():
     conn = connect("10.19.1.11", 18861)
     while True:
-
+        for line in fileinput.input():
+            if
     print putValue(525, 2, conn)
     print getValue(525, conn)
     print putValue(50, 2, conn)
