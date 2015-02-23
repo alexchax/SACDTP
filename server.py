@@ -157,6 +157,7 @@ class MyService(rpyc.Service):
 
     def exposed_put(self, key, value):
         # puts a key : value pair into the correct HT
+        print rpyc.Service.node.conn
         if not rpyc.Service.node.conn:
             try:
                 # check if a connection is currently active
