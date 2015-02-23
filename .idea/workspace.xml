@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7cc980ce-25ca-4923-a7d6-b81b0e8e55d7" name="Default" comment="">
+    <list default="true" id="7cc980ce-25ca-4923-a7d6-b81b0e8e55d7" name="Default" comment="hardcoded something I shouldnt have O.o">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.py" afterPath="$PROJECT_DIR$/server.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -39,8 +39,8 @@
       <file leaf-file-name="server.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.68686867" vertical-offset="442" max-vertical-offset="2499">
-              <caret line="62" column="42" selection-start-line="62" selection-start-column="42" selection-end-line="62" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.5342312" vertical-offset="1020" max-vertical-offset="2550">
+              <caret line="88" column="51" selection-start-line="88" selection-start-column="51" selection-end-line="88" selection-end-column="51" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -556,7 +556,11 @@
       <created>1424671396501</created>
       <updated>1424671396501</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="hardcoded something I shouldnt have O.o">
+      <created>1424671723362</created>
+      <updated>1424671723362</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -632,7 +636,8 @@
     <MESSAGE value="push fix" />
     <MESSAGE value="push fixed" />
     <MESSAGE value="set max to 10,000" />
-    <option name="LAST_COMMIT_MESSAGE" value="set max to 10,000" />
+    <MESSAGE value="hardcoded something I shouldnt have O.o" />
+    <option name="LAST_COMMIT_MESSAGE" value="hardcoded something I shouldnt have O.o" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -818,8 +823,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.68686867" vertical-offset="442" max-vertical-offset="2499">
-          <caret line="62" column="42" selection-start-line="62" selection-start-column="42" selection-end-line="62" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.5342312" vertical-offset="1020" max-vertical-offset="2550">
+          <caret line="88" column="51" selection-start-line="88" selection-start-column="51" selection-end-line="88" selection-end-column="51" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

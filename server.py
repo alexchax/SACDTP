@@ -6,6 +6,7 @@ print sys.argv
 
 
 def getDHT():
+    # pulls all values from a textfile and puts them into a DHT
     DHT = {}
     filename = "DHT.txt"
     try:
@@ -20,6 +21,7 @@ def getDHT():
 
 
 def updateDHT(DHT):
+    # writes the current DHT into a file (key) : (value)
     print DHT
     with open("DHT.txt", "w") as DHTFile:
         for key in DHT:
@@ -45,6 +47,7 @@ class MyService(rpyc.Service):
     # port that the server is running on - always 18861
     rpyc.Service.neighbour_port = 18861
     try:
+        # try connecting to the
         print "connecting to: " + str(rpyc.Service.neighbour_ip)
         rpyc.Service.conn = rpyc.connect(rpyc.Service.neighbour_ip, rpyc.Service.neighbour_port)
         conn = rpyc.Service.conn
@@ -83,7 +86,7 @@ class MyService(rpyc.Service):
                 rpyc.Service.neighbour_id = middle_id
             else:
                 print "here2"
-                middle_id = round((1000 - rpyc.Service.node_id)/2, 0) + rpyc.Service.node_id
+                middle_id = round((rpyc.Service.Max - rpyc.Service.node_id)/2, 0) + rpyc.Service.node_id
                 n_id = 0
             print str(middle_id)
             top_DHT = {}
