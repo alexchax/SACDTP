@@ -158,14 +158,16 @@ class MyService(rpyc.Service):
     def exposed_put(self, key, value):
         # puts a key : value pair into the correct HT
         print rpyc.Service.node.conn
-        if not rpyc.Service.node.conn:
-            try:
-                # check if a connection is currently active
-                conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
-                print conn
-            except socket.error:
-                conn = None
-                return False
+        conn = rpyc.Service.node.conn
+
+        # if not rpyc.Service.node.conn:
+        #     try:
+        #         # check if a connection is currently active
+        #         conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
+        #         print conn
+        #     except socket.error:
+        #         conn = None
+        #         return False
         # if the current table is the correct table add the key/value pair to the DHT
         if rpyc.Service.node.node_id <= key < rpyc.Service.node.neighbour_id or rpyc.Service.node.neighbour_id < rpyc.Service.node.node_id < key:
             rpyc.Service.node.DHT[int(key)] = int(value)
@@ -174,14 +176,14 @@ class MyService(rpyc.Service):
             return True
         # look in the next table to add it to the DHT
         else:
-            print rpyc.Service.node.conn
-            if rpyc.Service.node.conn:
-                conn = rpyc.Service.node.conn
+            print conn
+            if conn:
                 print "key: " + str(key) + " not found on server " + rpyc.Service.node.node_ip + " with ids: " + str(rpyc.Service.node.node_id) + " - " + str(rpyc.Service.node.neighbour_id)
                 print "passed to: " + rpyc.Service.node.neighbour_ip
                 return conn.root.put(key, value)
             else:
                 print "connection error"
+                return False
 
 
 if __name__ == "__main__":
