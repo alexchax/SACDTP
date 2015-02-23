@@ -29,16 +29,20 @@ def updateDHT(DHT):
 
 class MyService(rpyc.Service):
     rpyc.Service.neighbour_ip = None
-    print len(sys.argv)
+    # arg(1) - ip of the node you want to connect to
     if len(sys.argv) == 2:
         rpyc.Service.neighbour_ip = sys.argv[1]
     rpyc.Service.DHT = getDHT()
+    # maximum number of values in the DHT's
     rpyc.Service.Max = 10000
+    # node id - index of first value in current DHT
     rpyc.Service.node_id = 0
+    # ip of the current node
     rpyc.Service.node_ip = socket.gethostbyname(socket.gethostname())
-    print rpyc.Service.node_ip
+    # neighbour id - the id of the next node in the DHT
     rpyc.Service.neighbour_id = 1000
     rpyc.Service.conn = None
+    # port that the server is running on - always 18861
     rpyc.Service.neighbour_port = 18861
     try:
         print "connecting to: " + str(rpyc.Service.neighbour_ip)
@@ -54,9 +58,9 @@ class MyService(rpyc.Service):
 
     def exposed_connect(self, node_ip):
         print node_ip
-        if rpyc.Service.node_id == 0 and rpyc.Service.neighbour_id == 1000:
+        if rpyc.Service.node_id == 0 and rpyc.Service.neighbour_id == rpyc.Service.Max:
             print "there"
-            middle_id = 500
+            middle_id = rpyc.Service.Max/2
             top_DHT = {}
             bottom_DHT = {}
             for key in rpyc.Service.DHT:
