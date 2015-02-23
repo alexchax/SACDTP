@@ -170,7 +170,7 @@ class MyService(rpyc.Service):
             try:
                 # check if a connection is currently active
                 conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
-                print "getting connection in put"
+                print "getting connection in put: " + rpyc.Service.node.neigbour_ip + " " + rpyc.Service.node.neigbour_port
             except socket.error:
                 conn = None
                 return False
@@ -182,7 +182,6 @@ class MyService(rpyc.Service):
             return True
         # look in the next table to add it to the DHT
         else:
-            print conn
             if conn:
                 print "key: " + str(key) + " not found on server " + rpyc.Service.node.node_ip + " with ids: " + str(rpyc.Service.node.node_id) + " - " + str(rpyc.Service.node.neighbour_id)
                 print "passed to: " + rpyc.Service.node.neighbour_ip
