@@ -170,7 +170,7 @@ class MyService(rpyc.Service):
             try:
                 # check if a connection is currently active
                 conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
-                print "getting connection in put: " + rpyc.Service.node.neigbour_ip + " " + rpyc.Service.node.neigbour_port
+                print "getting connection in put: " + (rpyc.Service.node.neigbour_ip) + " " + str(rpyc.Service.node.neigbour_port)
             except socket.error:
                 conn = None
                 return False
