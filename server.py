@@ -128,7 +128,7 @@ class MyService(rpyc.Service):
                 rpyc.Service.conn = None
                 return None
         # if the current nodes has the table that holds the key
-        if rpyc.Service.node_id < key < rpyc.Service.neighbour_id or rpyc.Service.neighbour_id < rpyc.Service.node_id < key:
+        if rpyc.Service.node_id <= key < rpyc.Service.neighbour_id or rpyc.Service.neighbour_id < rpyc.Service.node_id < key:
             print "get: " + str(key)
             try:
                 return rpyc.Service.DHT[key]
@@ -151,7 +151,7 @@ class MyService(rpyc.Service):
                 rpyc.Service.conn = None
                 return False
         # if the current table is the correct table add the key/value pair to the DHT
-        if rpyc.Service.node_id < key < rpyc.Service.neighbour_id or rpyc.Service.neighbour_id < rpyc.Service.node_id < key:
+        if rpyc.Service.node_id <= key < rpyc.Service.neighbour_id or rpyc.Service.neighbour_id < rpyc.Service.node_id < key:
             rpyc.Service.DHT[int(key)] = int(value)
             updateDHT(rpyc.Service.DHT)
             print str(key) + ":" + str(value) + " added to DHT"
