@@ -81,7 +81,7 @@ class MyService(rpyc.Service):
             rpyc.Service.neighbour_id = middle_id
             updateDHT(bottom_DHT)
             rpyc.Service.neighbour_ip = node_ip
-            print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(rpyc.Service.neighbour_ip) + " " + rpyc.Service.node_ip
+            print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(rpyc.Service.neighbour_ip) + " " + str(rpyc.Service.node_ip)
             return middle_id, 0, top_DHT, rpyc.Service.node_ip
         else:
             n_id = 0
@@ -113,7 +113,7 @@ class MyService(rpyc.Service):
             # update cur node DHT with the bottom of DHT
             updateDHT(rpyc.Service.DHT)
             # debug message
-            print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(rpyc.Service.neighbour_ip)
+            print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(rpyc.Service.neighbour_ip) + rpyc.Service.node_ip
             #return node_id, neighbour id, DHT, neighbour ip
             return middle_id, n_id, top_DHT, n_ip
 
