@@ -68,13 +68,13 @@ class MyService(rpyc.Service):
         # debug statement
         print str(rpyc.Service.node.node_id) + " " + str(rpyc.Service.node.neighbour_id) + " " + str(rpyc.Service.node.DHT) + " " + str(rpyc.Service.node.neighbour_ip) + " " + str(rpyc.Service.node.node_ip)
         updateDHT(rpyc.Service.node.DHT)
-        print "connection between: " + rpyc.Service.node.node_ip + " and " + rpyc.Service.node.neighbour_ip + "established"
+        print "connection between: " + rpyc.Service.node.node_ip + " and " + rpyc.Service.node.neighbour_ip + " established"
     except socket.error:
         # if arg not set or connection is unable to be set dont connect to the DHT
         rpyc.Service.node.conn = None
         print "connection not found"
         print rpyc.Service.node.conn
-
+    print rpyc.Service.node.node_ip
     # "exposed_-" allows other nodes to use a connection to call these functions
     def exposed_connect(self, node_ip):
         # connects a node to the Chord Scheme
