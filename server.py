@@ -126,7 +126,7 @@ class MyService(rpyc.Service):
             rpyc.Service.node.neighbour_ip = node_ip
             # update cur node DHT with the bottom of DHT
             updateDHT(rpyc.Service.node.DHT)
-            rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neigbour_port)
+            rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
             # debug message
             print str(rpyc.Service.node.node_id) + " " + str(rpyc.Service.node.neighbour_id) + " " + str(rpyc.Service.node.DHT) + " " + str(rpyc.Service.node.neighbour_ip) + " " + rpyc.Service.node.node_ip
             #return node_id, neighbour id, DHT, neighbour ip
