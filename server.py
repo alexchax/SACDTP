@@ -119,13 +119,13 @@ class MyService(rpyc.Service):
     def exposed_get(self, key):
         # returns the value that key stores
         if not rpyc.Service.conn:
-            try:
-                #check to see if rpyc connection has been made
-                rpyc.Service.conn = rpyc.connect(rpyc.Service.neighbour_ip, rpyc.Service.neighbour_port)
-            except socket.error:
-                print "connection error"
-                rpyc.Service.conn = None
-                return None
+            # try:
+            #     #check to see if rpyc connection has been made
+            #     rpyc.Service.conn = rpyc.connect(rpyc.Service.neighbour_ip, rpyc.Service.neighbour_port)
+            # except socket.error:
+            #     print "connection error"
+            #     rpyc.Service.conn = None
+            #     return None
         # if the current nodes has the table that holds the key
         if rpyc.Service.node_id <= key < rpyc.Service.neighbour_id or rpyc.Service.neighbour_id < rpyc.Service.node_id < key:
             print "get: " + str(key)
@@ -142,13 +142,13 @@ class MyService(rpyc.Service):
 
     def exposed_put(self, key, value):
         # puts a key : value pair into the correct HT
-        if not rpyc.Service.conn:
-            try:
-                # check if a connection is currently active
-                rpyc.Service.conn = rpyc.connect(rpyc.Service.neighbour_ip, rpyc.Service.neighbour_port)
-            except socket.error:
-                rpyc.Service.conn = None
-                return False
+        # if not rpyc.Service.conn:
+        #     try:
+        #         # check if a connection is currently active
+        #         rpyc.Service.conn = rpyc.connect(rpyc.Service.neighbour_ip, rpyc.Service.neighbour_port)
+        #     except socket.error:
+        #         rpyc.Service.conn = None
+        #         return False
         # if the current table is the correct table add the key/value pair to the DHT
         if rpyc.Service.node_id <= key < rpyc.Service.neighbour_id or rpyc.Service.neighbour_id < rpyc.Service.node_id < key:
             rpyc.Service.DHT[int(key)] = int(value)
