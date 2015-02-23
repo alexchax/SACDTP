@@ -55,7 +55,7 @@ class MyService(rpyc.Service):
         # uses the inital connection method to split up the DHT
         rpyc.Service.node_id, rpyc.Service.neighbour_id, rpyc.Service.DHT, rpyc.Service.neighbour_ip = conn.root.connect(rpyc.Service.node_ip)
         # debug statement
-        print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(rpyc.Service.neighbour_ip)
+        print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(rpyc.Service.neighbour_ip) + " " + str(rpyc.Service.node_ip)
         updateDHT(rpyc.Service.DHT)
     except socket.error:
         # if arg not set or connection is unable to be set dont connect to the DHT
@@ -81,7 +81,7 @@ class MyService(rpyc.Service):
             rpyc.Service.neighbour_id = middle_id
             updateDHT(bottom_DHT)
             rpyc.Service.neighbour_ip = node_ip
-            print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(rpyc.Service.neighbour_ip)
+            print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(rpyc.Service.neighbour_ip) + " " + rpyc.Service.node_ip
             return middle_id, 0, top_DHT, rpyc.Service.node_ip
         else:
             n_id = 0
@@ -137,7 +137,8 @@ class MyService(rpyc.Service):
         else:
             #otherwise go to the next nodes hastable and check it
             if rpyc.Service.conn:
-                print "get: " + str(key) + " not found" + " on server " + rpyc.Service.node_ip + "with ids: " + str(rpyc.Service.node_id) + " : " + str(rpyc.Service.neighbour_id)
+                print "get: " + str(key) + " not found" + " on server " + rpyc.Service.node_ip + " with ids: " + str(rpyc.Service.node_id) + " : " + str(rpyc.Service.neighbour_id)
+                print "passed to: " + rpyc.Service.neighbour_ip
                 return rpyc.Service.conn.root.get(key)
 
     def exposed_put(self, key, value):

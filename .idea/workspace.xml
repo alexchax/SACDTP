@@ -27,10 +27,20 @@
           <splitter split-orientation="horizontal" split-proportion="0.5">
             <split-first>
               <leaf>
-                <file leaf-file-name="txt (1).txt" pinned="false" current="false" current-in-tab="true">
+                <file leaf-file-name="txt (1).txt" pinned="false" current="false" current-in-tab="false">
                   <entry file="file://$USER_HOME$/Downloads/txt (1).txt">
                     <provider selected="true" editor-type-id="text-editor">
-                      <state vertical-scroll-proportion="-0.31030703" vertical-offset="283" max-vertical-offset="1224">
+                      <state vertical-scroll-proportion="0.0" vertical-offset="283" max-vertical-offset="1224">
+                        <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+                        <folding />
+                      </state>
+                    </provider>
+                  </entry>
+                </file>
+                <file leaf-file-name="txt (2).txt" pinned="false" current="false" current-in-tab="true">
+                  <entry file="file://$USER_HOME$/Downloads/txt (2).txt">
+                    <provider selected="true" editor-type-id="text-editor">
+                      <state vertical-scroll-proportion="-0.32894737" vertical-offset="300" max-vertical-offset="1241">
                         <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                         <folding />
                       </state>
@@ -41,11 +51,21 @@
             </split-first>
             <split-second>
               <leaf>
-                <file leaf-file-name="text_rest (1).txt" pinned="false" current="false" current-in-tab="true">
+                <file leaf-file-name="text_rest (1).txt" pinned="false" current="false" current-in-tab="false">
                   <entry file="file://$USER_HOME$/Downloads/text_rest (1).txt">
                     <provider selected="true" editor-type-id="text-editor">
-                      <state vertical-scroll-proportion="-0.37938598" vertical-offset="1077" max-vertical-offset="1989">
+                      <state vertical-scroll-proportion="0.0" vertical-offset="1077" max-vertical-offset="1989">
                         <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
+                        <folding />
+                      </state>
+                    </provider>
+                  </entry>
+                </file>
+                <file leaf-file-name="text_rest (2).txt" pinned="false" current="false" current-in-tab="true">
+                  <entry file="file://$USER_HOME$/Downloads/text_rest (2).txt">
+                    <provider selected="true" editor-type-id="text-editor">
+                      <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2006">
+                        <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                         <folding />
                       </state>
                     </provider>
@@ -77,8 +97,8 @@
       <file leaf-file-name="server.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5302491" vertical-offset="2065" max-vertical-offset="2941">
-              <caret line="139" column="178" selection-start-line="139" selection-start-column="178" selection-end-line="139" selection-end-column="178" />
+            <state vertical-scroll-proportion="0.56049824" vertical-offset="2065" max-vertical-offset="2958">
+              <caret line="140" column="38" selection-start-line="140" selection-start-column="38" selection-end-line="140" selection-end-column="38" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -618,12 +638,16 @@
       <created>1424673746169</created>
       <updated>1424673746169</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="enhanced debug code">
+      <created>1424674380328</created>
+      <updated>1424674380328</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1654" height="1040" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -635,7 +659,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.004716981" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33690986" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33690986" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33709678" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -697,7 +721,8 @@
     <MESSAGE value="hardcoded something I shouldnt have O.o" />
     <MESSAGE value="IT IS DYNAMIC DAMMIT" />
     <MESSAGE value="All commenting complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="All commenting complete" />
+    <MESSAGE value="enhanced debug code" />
+    <option name="LAST_COMMIT_MESSAGE" value="enhanced debug code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -899,24 +924,40 @@
     </entry>
     <entry file="file://$USER_HOME$/Downloads/txt (1).txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.31030703" vertical-offset="283" max-vertical-offset="1224">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="283" max-vertical-offset="1224">
+          <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Downloads/text_rest (1).txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.37938598" vertical-offset="1077" max-vertical-offset="1989">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1077" max-vertical-offset="1989">
           <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/text_rest (2).txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2006">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/txt (2).txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.32894737" vertical-offset="300" max-vertical-offset="1241">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5302491" vertical-offset="2065" max-vertical-offset="2941">
-          <caret line="139" column="178" selection-start-line="139" selection-start-column="178" selection-end-line="139" selection-end-column="178" />
+        <state vertical-scroll-proportion="0.56049824" vertical-offset="2065" max-vertical-offset="2958">
+          <caret line="140" column="38" selection-start-line="140" selection-start-column="38" selection-end-line="140" selection-end-column="38" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
