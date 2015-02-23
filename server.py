@@ -73,6 +73,7 @@ class MyService(rpyc.Service):
             if rpyc.Service.neighbour_id > rpyc.Service.node_id:
                 print "here"
                 middle_id = (rpyc.Service.neighbour_id - rpyc.Service.node_id)/2 + rpyc.Service.node_id
+                rpyc.Service.neighbour_id = middle_id
             else:
                 print "here2"
                 middle_id = round((1000 - rpyc.Service.node_id)/2, 0) + rpyc.Service.node_id
