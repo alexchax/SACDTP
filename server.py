@@ -45,7 +45,7 @@ class MyService(rpyc.Service):
         conn = rpyc.Service.conn
         # ??????
         rpyc.Service.node_id, rpyc.Service.neighbour_id, rpyc.Service.DHT, rpyc.Service.neighbour_ip = conn.root.connect(rpyc.Service.node_ip)
-        print str(rpyc.Service.node_id) + str(rpyc.Service.neighbour_id) + str(rpyc.Service.DHT) + str(rpyc.Service.neighbour_ip)
+        print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(rpyc.Service.neighbour_ip)
         updateDHT(rpyc.Service.DHT)
     except socket.error:
         rpyc.Service.conn = None
