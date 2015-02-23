@@ -12,13 +12,10 @@ def main():
     while True:
         for line in fileinput.input():
             s = line.split(" ")
-
-    print putValue(525, 2, conn)
-    print getValue(525, conn)
-    print putValue(50, 2, conn)
-    print getValue(50, conn)
-    print putValue(300, 4, conn)
-    print getValue(300, conn)
+            if s[0] == "get":
+                print getValue(int(s[1].strip()), conn)
+            elif s[0] == "put":
+                print putValue(int(s[1].strip()), int(s[2].strip()), conn)
 
 if __name__ == "__main__":
     main()
