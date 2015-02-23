@@ -157,13 +157,13 @@ class MyService(rpyc.Service):
 
     def exposed_put(self, key, value):
         # puts a key : value pair into the correct HT
-        # if not conn:
-        #     try:
-        #         # check if a connection is currently active
-        #         conn = rpyc.connect(neighbour_ip, neighbour_port)
-        #     except socket.error:
-        #         conn = None
-        #         return False
+        if not rpyc.Service.node.conn:
+            try:
+                # check if a connection is currently active
+                conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
+            except socket.error:
+                conn = None
+                return False
         # if the current table is the correct table add the key/value pair to the DHT
         if rpyc.Service.node.node_id <= key < rpyc.Service.node.neighbour_id or rpyc.Service.node.neighbour_id < rpyc.Service.node.node_id < key:
             rpyc.Service.node.DHT[int(key)] = int(value)
