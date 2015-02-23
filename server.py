@@ -157,6 +157,7 @@ class MyService(rpyc.Service):
 
     def exposed_put(self, key, value):
         # puts a key : value pair into the correct HT
+        print "doing put"
         print rpyc.Service.node.conn
         conn = rpyc.Service.node.conn
 
