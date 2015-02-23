@@ -53,7 +53,7 @@ class MyService(rpyc.Service):
         print "connection not found"
 
     def exposed_connect(self, node_ip):
-        if rpyc.Service.node_id == 0 and rpyc.Service.neighbour_ip == 1000:
+        if rpyc.Service.node_id == 0 and rpyc.Service.neighbour_id == 1000:
             print "there"
             middle_id = 500
             top_DHT = {}
