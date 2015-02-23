@@ -36,7 +36,7 @@ class MyService(rpyc.Service):
         rpyc.Service.neighbour_ip = sys.argv[1]
     rpyc.Service.DHT = getDHT()
     # maximum number of values in the DHT's
-    rpyc.Service.Max = 10000
+    rpyc.Service.Max = 100000
     # node id - index of first value in current DHT
     rpyc.Service.node_id = 0
     # ip of the current node
@@ -106,22 +106,28 @@ class MyService(rpyc.Service):
                     bottom_DHT[key] = rpyc.Service.DHT[key]
             #set the current nodes DHT as the bottom half
             rpyc.Service.DHT = bottom_DHT
-            # save cur nodes' neighbour
+            # save cur nodes' neighbour's ip
             n_ip = rpyc.Service.neighbour_ip
+            # set cur nodes neighbour as new node
             rpyc.Service.neighbour_ip = node_ip
+            # update cur node DHT with the bottom of DHT
             updateDHT(rpyc.Service.DHT)
+            # debug message
             print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(rpyc.Service.neighbour_ip)
+            #return node_id, neighbour id, DHT, neighbour ip
             return middle_id, n_id, top_DHT, n_ip
 
-    def exposed_get_ip(self):
-        return rpyc.Service.node_ip
-
     def exposed_get(self, key):
+        # returns the value that key stores
         if not rpyc.Service.conn:
             try:
+                #check to see if rpyc connection has been made
                 rpyc.Service.conn = rpyc.connect(rpyc.Service.neighbour_ip, rpyc.Service.neighbour_port)
             except socket.error:
+                print "connection error"
                 rpyc.Service.conn = None
+                return None
+        # if the current nodes has table
         if rpyc.Service.node_id < key < rpyc.Service.neighbour_id or rpyc.Service.neighbour_id < rpyc.Service.node_id < key:
             print "get: " + str(key)
             try:
