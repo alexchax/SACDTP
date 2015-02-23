@@ -160,14 +160,14 @@ class MyService(rpyc.Service):
         print rpyc.Service.node.conn
         conn = rpyc.Service.node.conn
 
-        # if not rpyc.Service.node.conn:
-        #     try:
-        #         # check if a connection is currently active
-        #         conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
-        #         print conn
-        #     except socket.error:
-        #         conn = None
-        #         return False
+        if not rpyc.Service.node.conn:
+            try:
+                # check if a connection is currently active
+                conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
+                print conn
+            except socket.error:
+                conn = None
+                return False
         # if the current table is the correct table add the key/value pair to the DHT
         if rpyc.Service.node.node_id <= key < rpyc.Service.node.neighbour_id or rpyc.Service.node.neighbour_id < rpyc.Service.node.node_id < key:
             rpyc.Service.node.DHT[int(key)] = int(value)
