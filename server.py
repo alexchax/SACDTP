@@ -137,7 +137,7 @@ class MyService(rpyc.Service):
         else:
             #otherwise go to the next nodes hastable and check it
             if rpyc.Service.conn:
-                print "get: " + str(key) + " not found"
+                print "get: " + str(key) + " not found" + " on server " + rpyc.Service.node_ip + "with ids: " + str(rpyc.Service.node_id) + " : " + str(rpyc.Service.neighbour_id)
                 return rpyc.Service.conn.root.get(key)
 
     def exposed_put(self, key, value):
@@ -157,7 +157,7 @@ class MyService(rpyc.Service):
             return True
         # look in the next table to add it to the DHT
         else:
-            print "key: " + str(key) + " not found"
+            print "key: " + str(key) + " not found" + " on server " + rpyc.Service.node_ip + "with ids: " + str(rpyc.Service.node_id) + " : " + str(rpyc.Service.neighbour_id)
             return rpyc.Service.conn.root.put(key, value)
 
 
