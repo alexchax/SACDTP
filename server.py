@@ -28,6 +28,8 @@ def updateDHT(DHT):
         DHTFile.close()
 
 
+
+
 class MyService(rpyc.Service):
     def __init__(self):
         self.neighbour_ip = None
@@ -46,6 +48,8 @@ class MyService(rpyc.Service):
         self.conn = None
         # port that the server is running on - always 18861
         self.neighbour_port = 18861
+
+    def connect(self):
         print "connecting to: " + str(self.neighbour_ip)
         try:
             # try connecting to the server put in the args
@@ -61,9 +65,10 @@ class MyService(rpyc.Service):
             # if arg not set or connection is unable to be set dont connect to the DHT
             self.conn = None
             print "connection not found"
-        print self.conn
-        super(MyService, self).__init__()
+            print self.conn
+            super(MyService, self).__init__()
 
+    connect()
     # "exposed_-" allows other nodes to use a connection to call these functions
     def exposed_connect(self, node_ip):
         # connects a node to the Chord Scheme
