@@ -128,7 +128,7 @@ class MyService(rpyc.Service):
             print str(key) + ":" + str(value) + " added to DHT"
             return True
         else:
-            print "key: " + key + " not found"
+            print "key: " + str(key) + " not found"
             return rpyc.Service.conn.root.put(key, value)
 
 
