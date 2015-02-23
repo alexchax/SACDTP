@@ -53,6 +53,7 @@ class MyService(rpyc.Service):
         print "connection not found"
 
     def exposed_connect(self, node_ip):
+        print node_ip
         if rpyc.Service.node_id == 0 and rpyc.Service.neighbour_id == 1000:
             print "there"
             middle_id = 500
@@ -76,7 +77,6 @@ class MyService(rpyc.Service):
                 middle_id = (rpyc.Service.neighbour_id - rpyc.Service.node_id)/2 + rpyc.Service.node_id
                 n_id = rpyc.Service.neighbour_id
                 rpyc.Service.neighbour_id = middle_id
-                rpyc.Service.neighbour_ip = node_ip
             else:
                 print "here2"
                 middle_id = round((1000 - rpyc.Service.node_id)/2, 0) + rpyc.Service.node_id
@@ -93,7 +93,7 @@ class MyService(rpyc.Service):
             n_ip = rpyc.Service.neighbour_ip
             rpyc.Service.neighbour_ip = node_ip
             updateDHT(rpyc.Service.DHT)
-            print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(n_ip)
+            print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(rpyc.Service.neighbour_ip)
             return middle_id, n_id, top_DHT, n_ip
 
     def exposed_get_ip(self):
