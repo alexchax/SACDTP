@@ -23,7 +23,7 @@ def getDHT():
 
 def updateDHT(DHT):
     print DHT
-    with open("DHT1.txt", "w") as DHTFile:
+    with open("DHT.txt", "w") as DHTFile:
         for key in DHT:
             DHTFile.write(str(key) + " : " + str(DHT[key]) + "\n")
         DHTFile.close()
