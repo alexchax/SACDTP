@@ -13,6 +13,8 @@ def main():
     conn = connect("10.19.1.11", 18861)
     print putValue(52, 2, conn)
     print getValue(52, conn)
+    print putValue(15, 2, conn)
+    print getValue(15, conn)
 
 if __name__ == "__main__":
     main()
