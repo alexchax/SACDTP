@@ -22,7 +22,6 @@ def getDHT():
 
 def updateDHT(DHT):
     # writes the current DHT into a file (key) : (value)
-    print DHT
     with open("DHT.txt", "w") as DHTFile:
         for key in DHT:
             DHTFile.write(str(key) + " : " + str(DHT[key]) + "\n")
@@ -154,11 +153,12 @@ class MyService(rpyc.Service):
         if rpyc.Service.node_id <= key < rpyc.Service.neighbour_id or rpyc.Service.neighbour_id < rpyc.Service.node_id < key:
             rpyc.Service.DHT[int(key)] = int(value)
             updateDHT(rpyc.Service.DHT)
-            print str(key) + ":" + str(value) + " added to DHT"
+            print str(key) + ":" + str(value) + " added to DHT at " + rpyc.Service.node_ip
             return True
         # look in the next table to add it to the DHT
         else:
-            print "key: " + str(key) + " not found" + " on server " + rpyc.Service.node_ip + "with ids: " + str(rpyc.Service.node_id) + " : " + str(rpyc.Service.neighbour_id)
+            print "key: " + str(key) + " not found on server " + rpyc.Service.node_ip + " with ids: " + str(rpyc.Service.node_id) + " - " + str(rpyc.Service.neighbour_id)
+            print "passed to: " + rpyc.Service.neighbour_ip
             return rpyc.Service.conn.root.put(key, value)
 
 
