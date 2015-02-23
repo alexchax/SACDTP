@@ -40,11 +40,11 @@
       <file leaf-file-name="server.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38958332" vertical-offset="2737" max-vertical-offset="3451">
-              <caret line="172" column="109" selection-start-line="172" selection-start-column="109" selection-end-line="172" selection-end-column="109" />
+            <state vertical-scroll-proportion="0.106694564" vertical-offset="646" max-vertical-offset="3451">
+              <caret line="41" column="78" selection-start-line="41" selection-start-column="78" selection-end-line="41" selection-end-column="78" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <marker date="1424723841810" expanded="true" signature="7625:8066" placeholder="..." />
+                <marker date="1424724185186" expanded="true" signature="7663:8104" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -405,12 +405,6 @@
       <option name="number" value="Default" />
       <updated>1424510379342</updated>
     </task>
-    <task id="LOCAL-00029" summary="push fixed">
-      <created>1424656840956</created>
-      <option name="number" value="00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1424656840956</updated>
-    </task>
     <task id="LOCAL-00030" summary="push fixed">
       <created>1424656938272</created>
       <option name="number" value="00030" />
@@ -699,7 +693,13 @@
       <option name="project" value="LOCAL" />
       <updated>1424723687252</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="&#10;OMG">
+      <created>1424723847588</created>
+      <option name="number" value="00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1424723847588</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -712,7 +712,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.004716981" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.07872697" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.08207705" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.09149278" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -807,7 +807,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1424723841810" expanded="true" signature="7625:8066" placeholder="..." />
+            <marker date="1424724185186" expanded="true" signature="7663:8104" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -842,7 +842,7 @@
           <caret line="130" column="36" selection-start-line="130" selection-start-column="36" selection-end-line="130" selection-end-column="36" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1424723841810" expanded="true" signature="7625:8066" placeholder="..." />
+            <marker date="1424724185186" expanded="true" signature="7663:8104" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -877,7 +877,7 @@
           <caret line="53" column="36" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1424723841810" expanded="true" signature="7625:8066" placeholder="..." />
+            <marker date="1424724185186" expanded="true" signature="7663:8104" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -918,7 +918,7 @@
           <caret line="41" column="35" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1424723841810" expanded="true" signature="7625:8066" placeholder="..." />
+            <marker date="1424724185186" expanded="true" signature="7663:8104" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1006,11 +1006,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38958332" vertical-offset="2737" max-vertical-offset="3451">
-          <caret line="172" column="109" selection-start-line="172" selection-start-column="109" selection-end-line="172" selection-end-column="109" />
+        <state vertical-scroll-proportion="0.106694564" vertical-offset="646" max-vertical-offset="3451">
+          <caret line="41" column="78" selection-start-line="41" selection-start-column="78" selection-end-line="41" selection-end-column="78" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1424723841810" expanded="true" signature="7625:8066" placeholder="..." />
+            <marker date="1424724185186" expanded="true" signature="7663:8104" placeholder="..." />
           </folding>
         </state>
       </provider>

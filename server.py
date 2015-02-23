@@ -39,7 +39,7 @@ class Node:
 class MyService(rpyc.Service):
     print "doing this"
     rpyc.Service.node = Node()
-    rpyc.Service.node.neighbour_ip = None
+    rpyc.Service.node.neighbour_ip = socket.gethostbyname(socket.gethostname())
     # arg(1) - ip of the node you want to connect to
     if len(sys.argv) == 2:
         rpyc.Service.node.neighbour_ip = sys.argv[1]
