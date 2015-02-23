@@ -160,6 +160,7 @@ class MyService(rpyc.Service):
             return True
         # look in the next table to add it to the DHT
         else:
+            print rpyc.Service.conn
             if rpyc.Service.conn:
                 conn = rpyc.Service.conn
                 print "key: " + str(key) + " not found on server " + rpyc.Service.node_ip + " with ids: " + str(rpyc.Service.node_id) + " - " + str(rpyc.Service.neighbour_id)
