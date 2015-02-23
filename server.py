@@ -127,7 +127,7 @@ class MyService(rpyc.Service):
                 print "connection error"
                 rpyc.Service.conn = None
                 return None
-        # if the current nodes has table
+        # if the current nodes has the table that holds the key
         if rpyc.Service.node_id < key < rpyc.Service.neighbour_id or rpyc.Service.neighbour_id < rpyc.Service.node_id < key:
             print "get: " + str(key)
             try:
@@ -135,27 +135,34 @@ class MyService(rpyc.Service):
             except KeyError:
                 return None
         else:
+            #otherwise go to the next nodes hastable and check it
             if rpyc.Service.conn:
                 print "get: " + str(key) + " not found"
                 return rpyc.Service.conn.root.get(key)
 
     def exposed_put(self, key, value):
+        # puts a key : value pair into the correct HT
         if not rpyc.Service.conn:
             try:
+                # check if a connection is currently active
                 rpyc.Service.conn = rpyc.connect(rpyc.Service.neighbour_ip, rpyc.Service.neighbour_port)
             except socket.error:
                 rpyc.Service.conn = None
+                return False
+        # if the current table is the correct table add the key/value pair to the DHT
         if rpyc.Service.node_id < key < rpyc.Service.neighbour_id or rpyc.Service.neighbour_id < rpyc.Service.node_id < key:
             rpyc.Service.DHT[int(key)] = int(value)
             updateDHT(rpyc.Service.DHT)
             print str(key) + ":" + str(value) + " added to DHT"
             return True
+        # look in the next table to add it to the DHT
         else:
             print "key: " + str(key) + " not found"
             return rpyc.Service.conn.root.put(key, value)
 
 
 if __name__ == "__main__":
+    #start the server on the current node
     from rpyc.utils.server import ThreadedServer
     t = ThreadedServer(MyService, port=18861)
     t.start()
