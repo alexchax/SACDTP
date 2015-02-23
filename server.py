@@ -28,10 +28,10 @@ def updateDHT(DHT):
 
 
 class MyService(rpyc.Service):
+    rpyc.Service.neighbour_ip = None
+    print len(sys.argv)
     if len(sys.argv) == 2:
         rpyc.Service.neighbour_ip = sys.argv[1]
-    else:
-        neighbour_ip = None
     rpyc.Service.DHT = getDHT()
     rpyc.Service.Max = 1000
     rpyc.Service.node_id = 0
