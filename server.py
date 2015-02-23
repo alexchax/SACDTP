@@ -76,6 +76,7 @@ class MyService(rpyc.Service):
                 middle_id = (rpyc.Service.neighbour_id - rpyc.Service.node_id)/2 + rpyc.Service.node_id
                 n_id = rpyc.Service.neighbour_id
                 rpyc.Service.neighbour_id = middle_id
+                rpyc.Service.neighbour_ip = node_ip
             else:
                 print "here2"
                 middle_id = round((1000 - rpyc.Service.node_id)/2, 0) + rpyc.Service.node_id
