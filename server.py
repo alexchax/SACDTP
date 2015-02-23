@@ -9,7 +9,7 @@ if len(sys.argv) == 2:
 
 def getDHT():
     DHT = {}
-    filename = "DHT1.txt"
+    filename = "DHT.txt"
     try:
         with open(filename, "r") as DHTFile:
             for line in DHTFile:
@@ -39,18 +39,23 @@ class MyService(rpyc.Service):
     rpyc.Service.conn = None
     rpyc.Service.neighbour_port = 18862
     try:
+        "connecting to: " + str(rpyc.Service.neighbour_ip)
         rpyc.Service.conn = rpyc.connect(rpyc.Service.neighbour_ip, rpyc.Service.neighbour_port)
         conn = rpyc.Service.conn
-        rpyc.Service.node_id, rpyc.Service.neighbour_id, rpyc.Service.DHT, rpyc.Service.neighbour_ip = rpyc.conn.root.connect()
+        rpyc.Service.node_id, rpyc.Service.neighbour_id, rpyc.Service.DHT, rpyc.Service.neighbour_ip = rpyc.conn.root.connect(rpyc.Service.node_ip)
+        print str(rpyc.Service.id) + str(rpyc.Service.neighbour_id) + str(rpyc.Service.DHT) + str(rpyc.Service.neighbour_ip)
         updateDHT(rpyc.Service.DHT)
     except socket.error:
         rpyc.Service.conn = None
+        print "connection not found"
 
-    def exposed_connect(self):
+    def exposed_connect(self, node_ip):
+        middle_id = 0
         if rpyc.Service.neighbour_id > rpyc.Service.node_id:
             middle_id = (rpyc.Service.neighbour_id - rpyc.Service.node_id)/2 + rpyc.Service.node_id
         else:
             middle_id = round((1000 - rpyc.Service.node_id)/2, 0) + rpyc.Service.node_id
+        print str(middle_id)
         top_DHT = {}
         bottom_DHT = {}
         for key in rpyc.Service.DHT:
@@ -59,6 +64,7 @@ class MyService(rpyc.Service):
             else:
                 bottom_DHT[key] = rpyc.Service.DHT[key]
         rpyc.Service.DHT = bottom_DHT
+        rpyc.Service.neighbour_ip = node_ip
         updateDHT(rpyc.Service.DHT)
         return middle_id, rpyc.Service.neighbour_id, top_DHT, rpyc.Service.neighbour_ip
 
