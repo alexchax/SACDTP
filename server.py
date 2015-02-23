@@ -72,14 +72,14 @@ class MyService(rpyc.Service):
             except socket.error:
                 rpyc.Service.conn = None
         if rpyc.Service.node_id < key < rpyc.Service.neighbour_id or rpyc.Service.neighbour_id < rpyc.Service.node_id < key:
-            print "get: " + key
+            print "get: " + str(key)
             try:
                 return rpyc.Service.DHT[key]
             except KeyError:
                 return None
         else:
             if rpyc.Service.conn:
-                print "get: " + key + " not found"
+                print "get: " + str(key) + " not found"
                 return rpyc.Service.conn.root.get(key)
 
     def exposed_put(self, key, value):
