@@ -2,7 +2,6 @@ import rpyc
 import socket
 import sys
 
-neighbour_ip = "localhost"
 print sys.argv
 if len(sys.argv) == 2:
     neighbour_ip = sys.argv[1]
@@ -52,7 +51,6 @@ class MyService(rpyc.Service):
         print "connection not found"
 
     def exposed_connect(self, node_ip):
-        middle_id = 0
         if rpyc.Service.neighbour_id > rpyc.Service.node_id:
             middle_id = (rpyc.Service.neighbour_id - rpyc.Service.node_id)/2 + rpyc.Service.node_id
         else:
