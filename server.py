@@ -161,6 +161,7 @@ class MyService(rpyc.Service):
             try:
                 # check if a connection is currently active
                 conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
+                print conn
             except socket.error:
                 conn = None
                 return False
