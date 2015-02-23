@@ -11,7 +11,8 @@ def main():
     conn = connect("10.19.1.11", 18861)
     while True:
         for line in fileinput.input():
-            if
+            s = line.split(" ")
+
     print putValue(525, 2, conn)
     print getValue(525, conn)
     print putValue(50, 2, conn)
