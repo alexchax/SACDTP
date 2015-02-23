@@ -42,18 +42,18 @@ class MyService(rpyc.Service):
         # ip of the current node
         self.node_ip = socket.gethostbyname(socket.gethostname())
         # neighbour id - the id of the next node in the DHT
-        self.neighbour_id = Max
+        self.neighbour_id = self.Max
         self.conn = None
         # port that the server is running on - always 18861
         self.neighbour_port = 18861
-        print "connecting to: " + str(neighbour_ip)
+        print "connecting to: " + str(self.neighbour_ip)
         try:
             # try connecting to the server put in the args
             # setup connection using rpyc
-            self.conn = rpyc.connect(neighbour_ip, neighbour_port)
-            self.conn = conn
+            self.conn = rpyc.connect(self.neighbour_ip, self.neighbour_port)
+            conn = self.conn
             # uses the inital connection method to split up the DHT
-            self.node_id, self.neighbour_id, self.DHT, self.neighbour_ip = conn.root.connect(node_ip)
+            self.node_id, self.neighbour_id, self.DHT, self.neighbour_ip = conn.root.connect(self.node_ip)
             # debug statement
             print str(self.node_id) + " " + str(self.neighbour_id) + " " + str(self.DHT) + " " + str(self.neighbour_ip) + " " + str(self.node_ip)
             updateDHT(self.DHT)
