@@ -65,6 +65,7 @@ class MyService(rpyc.Service):
                     bottom_DHT[key] = rpyc.Service.DHT[key]
             rpyc.Service.DHT = bottom_DHT
             updateDHT(bottom_DHT)
+            rpyc.Service.neighbour_ip = node_ip
             print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(rpyc.Service.neighbour_ip)
             return middle_id, 0, top_DHT, rpyc.Service.node_ip
         else:
