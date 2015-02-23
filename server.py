@@ -95,7 +95,7 @@ class MyService(rpyc.Service):
             updateDHT(bottom_DHT)
             rpyc.Service.node.neighbour_ip = node_ip
             print str(rpyc.Service.node.node_id) + " " + str(rpyc.Service.node.neighbour_id) + " " + str(rpyc.Service.node.DHT) + " " + str(rpyc.Service.node.neighbour_ip) + " " + str(rpyc.Service.node.node_ip)
-            return middle_id, 0, top_DHT, node_ip
+            return middle_id, 0, top_DHT, node.node_ip
         else:
             n_id = 0
             # if current node is not the node connected to the "start" node
@@ -126,7 +126,7 @@ class MyService(rpyc.Service):
             # update cur node DHT with the bottom of DHT
             updateDHT(rpyc.Service.node.DHT)
             # debug message
-            print str(rpyc.Service.node.node_id) + " " + str(rpyc.Service.node.neighbour_id) + " " + str(rpyc.Service.node.DHT) + " " + str(rpyc.Service.node.neighbour_ip) + rpyc.Service.node.node_ip
+            print str(rpyc.Service.node.node_id) + " " + str(rpyc.Service.node.neighbour_id) + " " + str(rpyc.Service.node.DHT) + " " + str(rpyc.Service.node.neighbour_ip) + " " + rpyc.Service.node.node_ip
             #return node_id, neighbour id, DHT, neighbour ip
             return middle_id, n_id, top_DHT, n_ip
 
