@@ -36,7 +36,7 @@ class MyService(rpyc.Service):
         rpyc.Service.neighbour_ip = sys.argv[1]
     rpyc.Service.DHT = getDHT()
     # maximum number of values in the DHT's
-    rpyc.Service.Max = 100000
+    rpyc.Service.Max = 1000000
     # node id - index of first value in current DHT
     rpyc.Service.node_id = 0
     # ip of the current node
