@@ -3,10 +3,7 @@ import socket
 import sys
 
 print sys.argv
-if len(sys.argv) == 2:
-    neighbour_ip = sys.argv[1]
-else:
-    neighbour_ip = None
+
 
 def getDHT():
     DHT = {}
@@ -31,12 +28,15 @@ def updateDHT(DHT):
 
 
 class MyService(rpyc.Service):
+    if len(sys.argv) == 2:
+        rpyc.Service.neighbour_ip = sys.argv[1]
+    else:
+        neighbour_ip = None
     rpyc.Service.DHT = getDHT()
     rpyc.Service.Max = 1000
     rpyc.Service.node_id = 0
     rpyc.Service.node_ip = socket.gethostbyname(socket.gethostname())
     rpyc.Service.neighbour_id = 1000
-    rpyc.Service.neighbour_ip = neighbour_ip
     rpyc.Service.conn = None
     rpyc.Service.neighbour_port = 18861
     try:
