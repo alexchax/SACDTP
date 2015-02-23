@@ -11,10 +11,12 @@ def putValue(key, value, conn):
 
 def main():
     conn = connect("10.19.1.11", 18861)
-    print putValue(52, 2, conn)
-    print getValue(52, conn)
-    print putValue(15, 2, conn)
-    print getValue(15, conn)
+    print putValue(525, 2, conn)
+    print getValue(525, conn)
+    print putValue(50, 2, conn)
+    print getValue(50, conn)
+    print putValue(300, 4, conn)
+    print getValue(300, conn)
 
 if __name__ == "__main__":
     main()

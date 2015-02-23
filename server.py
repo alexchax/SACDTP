@@ -35,7 +35,7 @@ class MyService(rpyc.Service):
     rpyc.Service.node_id = 0
     rpyc.Service.node_ip = socket.gethostbyname(socket.gethostname())
     print rpyc.Service.node_ip
-    rpyc.Service.neighbour_id = 100
+    rpyc.Service.neighbour_id = 1000
     rpyc.Service.neighbour_ip = neighbour_ip
     rpyc.Service.conn = None
     rpyc.Service.neighbour_port = 18861
