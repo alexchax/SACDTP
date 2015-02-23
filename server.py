@@ -36,6 +36,7 @@ class MyService(rpyc.Service):
     rpyc.Service.Max = 1000
     rpyc.Service.node_id = 0
     rpyc.Service.node_ip = socket.gethostbyname(socket.gethostname())
+    print rpyc.Service.node_ip
     rpyc.Service.neighbour_id = 1000
     rpyc.Service.conn = None
     rpyc.Service.neighbour_port = 18861
@@ -63,12 +64,13 @@ class MyService(rpyc.Service):
                     bottom_DHT[key] = rpyc.Service.DHT[key]
             rpyc.Service.DHT = bottom_DHT
             updateDHT(bottom_DHT)
-            return middle_id, rpyc.Service.node_id, top_DHT, rpyc.Service.node_ip
+            return middle_id, 0, top_DHT, rpyc.Service.node_ip
         else:
             if rpyc.Service.neighbour_id > rpyc.Service.node_id:
                 middle_id = (rpyc.Service.neighbour_id - rpyc.Service.node_id)/2 + rpyc.Service.node_id
             else:
                 middle_id = round((1000 - rpyc.Service.node_id)/2, 0) + rpyc.Service.node_id
+                rpyc.Service.neighbour_id = 0
             print str(middle_id)
             top_DHT = {}
             bottom_DHT = {}
