@@ -35,13 +35,12 @@ class MyService(rpyc.Service):
     rpyc.Service.Max = 1000
     rpyc.Service.node_id = 0
     rpyc.Service.node_ip = socket.gethostbyname(socket.gethostname())
-    print rpyc.Service.node_ip
     rpyc.Service.neighbour_id = 1000
     rpyc.Service.neighbour_ip = neighbour_ip
     rpyc.Service.conn = None
     rpyc.Service.neighbour_port = 18861
     try:
-        "connecting to: " + str(rpyc.Service.neighbour_ip)
+        print "connecting to: " + str(rpyc.Service.neighbour_ip)
         rpyc.Service.conn = rpyc.connect(rpyc.Service.neighbour_ip, rpyc.Service.neighbour_port)
         conn = rpyc.Service.conn
         # ??????
@@ -53,24 +52,37 @@ class MyService(rpyc.Service):
         print "connection not found"
 
     def exposed_connect(self, node_ip):
-        if rpyc.Service.neighbour_id > rpyc.Service.node_id:
-            middle_id = (rpyc.Service.neighbour_id - rpyc.Service.node_id)/2 + rpyc.Service.node_id
+        if rpyc.Service.node_id == 0 and rpyc.Service.neighbour_ip == 1000:
+            middle_id = 500
+            top_DHT = {}
+            bottom_DHT = {}
+            for key in rpyc.Service.DHT:
+                if key > middle_id:
+                    top_DHT[key] = rpyc.Service.DHT[key]
+                else:
+                    bottom_DHT[key] = rpyc.Service.DHT[key]
+            rpyc.Service.DHT = bottom_DHT
+            updateDHT(bottom_DHT)
+            return middle_id, rpyc.Service.node_id, top_DHT, rpyc.Service.node_ip
         else:
-            middle_id = round((1000 - rpyc.Service.node_id)/2, 0) + rpyc.Service.node_id
-        print str(middle_id)
-        top_DHT = {}
-        bottom_DHT = {}
-        for key in rpyc.Service.DHT:
-            if key > middle_id:
-                top_DHT[key] = rpyc.Service.DHT[key]
+            if rpyc.Service.neighbour_id > rpyc.Service.node_id:
+                middle_id = (rpyc.Service.neighbour_id - rpyc.Service.node_id)/2 + rpyc.Service.node_id
             else:
-                bottom_DHT[key] = rpyc.Service.DHT[key]
-        rpyc.Service.DHT = bottom_DHT
-        n_ip = rpyc.Service.neighbour_ip
-        rpyc.Service.neighbour_ip = node_ip
-        updateDHT(rpyc.Service.DHT)
-        print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(n_ip)
-        return middle_id, rpyc.Service.neighbour_id, top_DHT, n_ip
+                middle_id = round((1000 - rpyc.Service.node_id)/2, 0) + rpyc.Service.node_id
+            print str(middle_id)
+            top_DHT = {}
+            bottom_DHT = {}
+            for key in rpyc.Service.DHT:
+                if key > middle_id:
+                    top_DHT[key] = rpyc.Service.DHT[key]
+                else:
+                    bottom_DHT[key] = rpyc.Service.DHT[key]
+            rpyc.Service.DHT = bottom_DHT
+            n_ip = rpyc.Service.neighbour_ip
+            rpyc.Service.neighbour_ip = node_ip
+            updateDHT(rpyc.Service.DHT)
+            print str(rpyc.Service.node_id) + " " + str(rpyc.Service.neighbour_id) + " " + str(rpyc.Service.DHT) + " " + str(n_ip)
+            return middle_id, rpyc.Service.neighbour_id, top_DHT, n_ip
 
     def exposed_get_ip(self):
         return rpyc.Service.node_ip
