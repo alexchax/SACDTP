@@ -23,8 +23,15 @@ env.hosts = [
   ]
 env.roledefs.update({
     'the_special': ["slice330.pcvm3-1.geni.case.edu"],
-    'not_special': ["slice330.pcvm3-1.instageni.metrodatacenter.com"],
-    'not_special1': ["slice330.pcvm3-1.instageni.lsu.edu"],
+    'not_special': ["slice330.pcvm3-1.instageni.metrodatacenter.com",
+    "slice330.pcvm3-1.instageni.lsu.edu",
+    "slice330.pcvm5-7.lan.sdn.uky.edu",
+    "slice330.pcvm3-1.instageni.lsu.edu",
+    "slice330.pcvm2-2.instageni.maxgigapop.net",
+    "slice330.pcvm1-1.instageni.iu.edu",
+    "slice330.pcvm3-4.instageni.rnet.missouri.edu",
+    "slice330.pcvm3-7.instageni.nps.edu",
+    "slice330.pcvm2-1.instageni.nysernet.org"],
 })
 
 
@@ -53,18 +60,12 @@ def run_server():
 
 @roles('the_special')
 def the_special():
-    run('python main.py')
-    run('put 23 5')
-    run('put 1 4')
-    run('put 525 3')
+    put('input.txt')
+    run('python main.py input.txt')
 
 @roles('not_special')
 @parallel
 def run_servers():
-    run('python server.py 10.0.0.255')
-
-@roles('not_special1')
-def runservers():
     run('python server.py 10.0.0.255')
 
 def uptime():

@@ -1,9 +1,0 @@
-[slice330.pcvm3-1.instageni.metrodatacenter.com] Executing task 'run_servers'
-[slice330.pcvm3-1.instageni.metrodatacenter.com] run: python server.py 10.0.0.255
-[slice330.pcvm3-1.instageni.metrodatacenter.com] out: connecting to: 10.0.0.255
-[slice330.pcvm3-1.instageni.metrodatacenter.com] out: 500000 0 {} 10.0.0.255 10.2.1.0
-[slice330.pcvm3-1.instageni.metrodatacenter.com] out: connection between: 10.2.1.0 and 10.0.0.255 established
-[slice330.pcvm3-1.instageni.metrodatacenter.com] out: 10.2.1.0
-[slice330.pcvm3-1.instageni.metrodatacenter.com] out: got from 10.6.1.23
-[slice330.pcvm3-1.instageni.metrodatacenter.com] out: doing put
-[slice330.pcvm3-1.instageni.metrodatacenter.com] out: 567000:5 added to DHT at 10.2.1.0
