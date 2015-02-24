@@ -167,8 +167,8 @@ class MyService(rpyc.Service):
                 conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
                 print "key: " + str(key) + " not found on server " + rpyc.Service.node.node_ip + " with ids: " + str(rpyc.Service.node.node_id) + " - " + str(rpyc.Service.node.neighbour_id)
                 print "passed to: " + rpyc.Service.node.neighbour_ip
-                tf = conn.root.put(key, value, rpyc.Service.node.node_ip)
-                return tf
+                conn.root.put(key, value, rpyc.Service.node.node_ip)
+                return True
             except socket.error:
                 print "connection error"
                 return False
