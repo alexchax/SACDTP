@@ -66,7 +66,7 @@ def the_special():
 @roles('not_special')
 @parallel
 def run_servers():
-    run('python server.py 10.0.0.255')
+    run('python server.py <the_special_ip>')
 
 def pingtest():
     run('ping -c 3 www.yahoo.com')

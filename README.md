@@ -16,7 +16,8 @@ Running your servers.
 -
 
 You'll need three terminal windows open to keep track of your output.
-- FIRST, set up the connection your original server 'fab run_server' in the first terminal window.
+- FIRST, set up the connection your original server 'fab run_server' in the first terminal window. You'll see an ip for the first server, remember it.
+- Edit the fab file section "run_servers" in the command where it says "run('python server.py <the_speical_ip>')" replace <the_special_ip> with the ip of the first server.
 - Then, set up the connection from all other servers to the original server 'fab run_servers' in the second terminal window,
 - Lastly, run the main function with your input to put in the values, and then get them respectively 'fab the_special'.
 
