@@ -43,6 +43,9 @@ class MyService(rpyc.Service):
     # arg(1) - ip of the node you want to connect to
     if len(sys.argv) == 2:
         rpyc.Service.node.neighbour_ip = sys.argv[1]
+    if len(sys.argv) == 3:
+        rpyc.Service.node.neighbour_ip = sys.argv[1]
+        rpyc.Service.node.node_port = sys.argv[2]
     rpyc.Service.node.DHT = getDHT()
     # maximum number of values in the DHT's
     rpyc.Service.node.Max = 1000000
@@ -66,6 +69,7 @@ class MyService(rpyc.Service):
         # debug statement
         print str(rpyc.Service.node.node_id) + " " + str(rpyc.Service.node.neighbour_id) + " " + str(rpyc.Service.node.DHT) + " " + str(rpyc.Service.node.neighbour_ip) + " " + str(rpyc.Service.node.node_ip)
         updateDHT(rpyc.Service.node.DHT)
+        conn = None
         print "connection between: " + rpyc.Service.node.node_ip + " and " + rpyc.Service.node.neighbour_ip + " established"
     except socket.error:
         # if arg not set or connection is unable to be set dont connect to the DHT
@@ -94,7 +98,6 @@ class MyService(rpyc.Service):
             rpyc.Service.node.neighbour_ip = node_ip
             return middle_id, 0, top_DHT, rpyc.Service.node.node_ip
         else:
-            n_id = 0
             # if current node is not the node connected to the "start" node
             if rpyc.Service.node.neighbour_id > rpyc.Service.node.node_id:
                 print "here"
@@ -129,15 +132,7 @@ class MyService(rpyc.Service):
 
     def exposed_get(self, key):
         # returns the value that key stores
-        # returns the value that key stores
-        # if not rpyc.Service.conn:
-            # try:
-            #     #check to see if rpyc connection has been made
-            #     rpyc.Service.conn = rpyc.connect(neighbour_ip, neighbour_port)
-            # except socket.error:
-            #     print "connection error"
-            #     conn = None
-            #     return None
+
         # if the current nodes has the table that holds the key
         if rpyc.Service.node.node_id <= key < rpyc.Service.node.neighbour_id or rpyc.Service.node.neighbour_id < rpyc.Service.node.node_id < key:
             print "get: " + str(key)
@@ -152,7 +147,6 @@ class MyService(rpyc.Service):
                 print "get: " + str(key) + " not found" + " on server " + rpyc.Service.node.node_ip + " with ids: " + str(rpyc.Service.node.node_id) + " : " + str(rpyc.Service.node.neighbour_id)
                 print "passed to: " + rpyc.Service.node.neighbour_ip
                 value = conn.root.get(key)
-                conn = None
                 return value
             except socket.error:
                 print "connection error"
