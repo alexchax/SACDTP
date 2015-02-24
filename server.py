@@ -139,7 +139,7 @@ class MyService(rpyc.Service):
                 print rpyc.Service.node.DHT
                 print rpyc.Service.node.DHT[key]
                 value = int(rpyc.Service.node.DHT[key])
-                return value
+                return 1
             except KeyError:
                 return None
             # except ReferenceError:
