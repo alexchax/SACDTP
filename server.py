@@ -163,6 +163,7 @@ class MyService(rpyc.Service):
                 rpyc.Service.node.DHT[key] = value
                 updateDHT(rpyc.Service.node.DHT)
                 print str(key) + ":" + str(value) + " added to DHT at " + rpyc.Service.node.node_ip
+                print rpyc.Service.node.DHT
                 return True
             except ReferenceError:
                 print "Reference Error"
