@@ -135,15 +135,21 @@ class MyService(rpyc.Service):
         print "got from" + ip
         # if the current nodes has the table that holds the key
         if rpyc.Service.node.node_id <= key < rpyc.Service.node.neighbour_id or rpyc.Service.node.neighbour_id < rpyc.Service.node.node_id < key:
-            print "get: " + str(key)
-            try:
-                val = rpyc.Service.node.DHT[key]
-                updateDHT(rpyc.Service.node.DHT)
-                return val
-            except KeyError:
-                return None
-            except ReferenceError:
-                print "REFERENCE ERROR"
+            # print "get: " + str(key)
+            # try:
+            #     val = rpyc.Service.node.DHT[key]
+            #     updateDHT(rpyc.Service.node.DHT)
+            #     return val
+            # except KeyError:
+            #     return None
+            # except ReferenceError:
+            #     print "REFERENCE ERROR"
+            #     return None
+            with open("DHT.txt", "r") as file:
+                for line in file:
+                    file_key, file_value = line.partition(":")[::2]
+                    if int(file_key.strip()) == key:
+                        return int(file_value)
                 return None
         else:
             #otherwise go to the next nodes hashtable and check it
