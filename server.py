@@ -139,12 +139,12 @@ class MyService(rpyc.Service):
             except KeyError:
                 return None
         else:
-            #otherwise go to the next nodes hastable and check it
+            #otherwise go to the next nodes hashtable and check it
             try:
                 rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
                 print "get: " + str(key) + " not found" + " on server " + rpyc.Service.node.node_ip + " with ids: " + str(rpyc.Service.node.node_id) + " : " + str(rpyc.Service.node.neighbour_id)
                 print "passed to: " + rpyc.Service.node.neighbour_ip
-                return rpyc.Service.node.conn.root.get(key, rpyc.Service.node.node_id)
+                return rpyc.Service.node.conn.root.get(key, rpyc.Service.node.node_ip)
             except socket.error:
                 print "connection error"
                 return None
