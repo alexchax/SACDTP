@@ -147,7 +147,7 @@ class MyService(rpyc.Service):
         else:
             #otherwise go to the next nodes hashtable and check it
             try:
-                rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
+                # rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
                 print "get: " + str(key) + " not found" + " on server " + rpyc.Service.node.node_ip + " with ids: " + str(rpyc.Service.node.node_id) + " : " + str(rpyc.Service.node.neighbour_id)
                 print "passed to: " + rpyc.Service.node.neighbour_ip
                 return rpyc.Service.node.conn.root.get(key, rpyc.Service.node.node_ip)
