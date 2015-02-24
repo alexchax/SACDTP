@@ -32,12 +32,12 @@ class Node:
         self.Max = 1000000
         self.node_id = None
         self.node_ip = None
+        self.node_port = 18861
         self.neighbour_id = None
         self.neighbour_port = 18861
 
 
 class MyService(rpyc.Service):
-    print "doing this"
     rpyc.Service.node = Node()
     rpyc.Service.node.neighbour_ip = socket.gethostbyname(socket.gethostname())
     # arg(1) - ip of the node you want to connect to
@@ -57,7 +57,6 @@ class MyService(rpyc.Service):
     rpyc.Service.node.neighbour_id = rpyc.Service.node.Max
     # port that the server is running on - always 18861
     rpyc.Service.node.neighbour_port = 18861
-    print "done doing this"
 
     print "connecting to: " + str(rpyc.Service.node.neighbour_ip)
     try:
