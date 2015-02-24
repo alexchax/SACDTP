@@ -180,6 +180,7 @@ class MyService(rpyc.Service):
             #     return False
             with open("DHT.txt", "w") as f:
                 f.write(str(key) + " : " + str(value))
+            return True
         # look in the next table to add it to the DHT
         else:
             try:
