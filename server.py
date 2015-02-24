@@ -136,6 +136,8 @@ class MyService(rpyc.Service):
             print "get: " + str(key)
             try:
                 #this is a change
+                print rpyc.Service.node.DHT
+                print rpyc.Service.node.DHT[key]
                 value = int(rpyc.Service.node.DHT[key])
                 return value
             except KeyError:
