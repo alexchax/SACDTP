@@ -179,7 +179,7 @@ class MyService(rpyc.Service):
             # except ReferenceError:
             #     print "Reference Error"
             #     return False
-            with open("DHT.txt", "w") as f:
+            with open("DHT.txt", "a") as f:
                 f.write(str(key) + " : " + str(value))
                 f.close()
             return True
