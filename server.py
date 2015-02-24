@@ -52,7 +52,6 @@ class MyService(rpyc.Service):
     rpyc.Service.node.node_ip = socket.gethostbyname(socket.gethostname())
     # neighbour id - the id of the next node in the DHT
     rpyc.Service.node.neighbour_id = rpyc.Service.node.Max
-    rpyc.Service.node.conn = None
     # port that the server is running on - always 18861
     rpyc.Service.node.neighbour_port = 18861
     print "done doing this"
@@ -61,8 +60,7 @@ class MyService(rpyc.Service):
     try:
         # try connecting to the server put in the args
         # setup connection using rpyc
-        rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
-        conn = rpyc.Service.node.conn
+        conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
         # uses the inital connection method to split up the DHT
         rpyc.Service.node.node_id, rpyc.Service.node.neighbour_id, rpyc.Service.node.DHT, rpyc.Service.node.neighbour_ip = conn.root.connect(rpyc.Service.node.node_ip)
         # debug statement
@@ -71,9 +69,8 @@ class MyService(rpyc.Service):
         print "connection between: " + rpyc.Service.node.node_ip + " and " + rpyc.Service.node.neighbour_ip + " established"
     except socket.error:
         # if arg not set or connection is unable to be set dont connect to the DHT
-        rpyc.Service.node.conn = None
+        conn = None
         print "connection not found"
-        print rpyc.Service.node.conn
     print rpyc.Service.node.node_ip
     # "exposed_-" allows other nodes to use a connection to call these functions
     def exposed_connect(self, node_ip):
@@ -95,12 +92,6 @@ class MyService(rpyc.Service):
             rpyc.Service.node.neighbour_id = middle_id
             updateDHT(bottom_DHT)
             rpyc.Service.node.neighbour_ip = node_ip
-            try:
-                rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
-                print "connection sucessful"
-            except socket.error:
-                print "2-way connection error"
-            print str(rpyc.Service.node.node_id) + " " + str(rpyc.Service.node.neighbour_id) + " " + str(rpyc.Service.node.DHT) + " " + str(rpyc.Service.node.neighbour_ip) + " " + str(rpyc.Service.node.node_ip)
             return middle_id, 0, top_DHT, rpyc.Service.node.node_ip
         else:
             n_id = 0
@@ -131,12 +122,6 @@ class MyService(rpyc.Service):
             rpyc.Service.node.neighbour_ip = node_ip
             # update cur node DHT with the bottom of DHT
             updateDHT(rpyc.Service.node.DHT)
-            try:
-                rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
-                print "connection to node " + rpyc.Service.node.neighbour_ip + " " + str(rpyc.Service.node.neighbour_port) + " has been created"
-            except socket.error:
-                rpyc.Service.node.conn = None
-                print "socket connection was not created"
             # debug message
             print str(rpyc.Service.node.node_id) + " " + str(rpyc.Service.node.neighbour_id) + " " + str(rpyc.Service.node.DHT) + " " + str(rpyc.Service.node.neighbour_ip) + " " + rpyc.Service.node.node_ip
             #return node_id, neighbour id, DHT, neighbour ip
@@ -162,28 +147,21 @@ class MyService(rpyc.Service):
                 return None
         else:
             #otherwise go to the next nodes hastable and check it
-            if rpyc.Service.node.conn:
-                conn = rpyc.Service.node.conn
+            try:
+                conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
                 print "get: " + str(key) + " not found" + " on server " + rpyc.Service.node.node_ip + " with ids: " + str(rpyc.Service.node.node_id) + " : " + str(rpyc.Service.node.neighbour_id)
                 print "passed to: " + rpyc.Service.node.neighbour_ip
-                return conn.root.get(key)
+                value = conn.root.get(key)
+                conn = None
+                return value
+            except socket.error:
+                print "connection error"
+                return None
 
     def exposed_put(self, key, value, ip):
         # puts a key : value pair into the correct HT
         print "got from " + ip
         print "doing put"
-        print rpyc.Service.node.conn
-        conn = rpyc.Service.node.conn
-
-        if not rpyc.Service.node.conn:
-            try:
-                # check if a connection is currently active
-                conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
-                print "getting connection in put: " + str(rpyc.Service.node.neighbour_ip) + " " + str(rpyc.Service.node.neighbour_port)
-            except socket.error:
-                print "socket error"
-                conn = None
-                return False
         # if the current table is the correct table add the key/value pair to the DHT
         if rpyc.Service.node.node_id <= key < rpyc.Service.node.neighbour_id or rpyc.Service.node.neighbour_id < rpyc.Service.node.node_id < key:
             rpyc.Service.node.DHT[int(key)] = int(value)
@@ -192,11 +170,12 @@ class MyService(rpyc.Service):
             return True
         # look in the next table to add it to the DHT
         else:
-            if conn:
+            try:
+                conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
                 print "key: " + str(key) + " not found on server " + rpyc.Service.node.node_ip + " with ids: " + str(rpyc.Service.node.node_id) + " - " + str(rpyc.Service.node.neighbour_id)
                 print "passed to: " + rpyc.Service.node.neighbour_ip
                 return conn.root.put(key, value, rpyc.Service.node.node_ip)
-            else:
+            except socket.error:
                 print "connection error"
                 return False
 
