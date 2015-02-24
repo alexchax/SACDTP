@@ -95,6 +95,11 @@ class MyService(rpyc.Service):
             rpyc.Service.node.neighbour_id = middle_id
             updateDHT(bottom_DHT)
             rpyc.Service.node.neighbour_ip = node_ip
+            try:
+                rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
+                print "connection sucessful"
+            except socket.error:
+                print "2-way connection error"
             print str(rpyc.Service.node.node_id) + " " + str(rpyc.Service.node.neighbour_id) + " " + str(rpyc.Service.node.DHT) + " " + str(rpyc.Service.node.neighbour_ip) + " " + str(rpyc.Service.node.node_ip)
             return middle_id, 0, top_DHT, rpyc.Service.node.node_ip
         else:
@@ -128,8 +133,10 @@ class MyService(rpyc.Service):
             updateDHT(rpyc.Service.node.DHT)
             try:
                 rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
+                print "connection to node " + rpyc.Service.node.neighbour_ip + " " + str(rpyc.Service.node.neighbour_port) + " has been created"
             except socket.error:
                 rpyc.Service.node.conn = None
+                print "socket connection was not created"
             # debug message
             print str(rpyc.Service.node.node_id) + " " + str(rpyc.Service.node.neighbour_id) + " " + str(rpyc.Service.node.DHT) + " " + str(rpyc.Service.node.neighbour_ip) + " " + rpyc.Service.node.node_ip
             #return node_id, neighbour id, DHT, neighbour ip
@@ -174,6 +181,7 @@ class MyService(rpyc.Service):
                 conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
                 print "getting connection in put: " + str(rpyc.Service.node.neighbour_ip) + " " + str(rpyc.Service.node.neighbour_port)
             except socket.error:
+                print "socket error"
                 conn = None
                 return False
         # if the current table is the correct table add the key/value pair to the DHT
