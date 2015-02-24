@@ -8,7 +8,7 @@ With this source code, and a slicelet gathered from gee-project.org, you can set
 Setting up your servers.
 -
 
-- Once you have a slicelet wiht it's fab file, (assuming you've already installed fab and know how to use it) simply copy the host names from your fab file and replace the host names in the fab file from this repo.
+- Once you have a slicelet with it's fab file, (assuming you've already installed fab and know how to use it) simply copy the host names from your fab file and replace the host names in the fab file from this repo.
 - Run 'fab setup_servers' to get all of the needed applications installed on all of the servers.
 - Prepare an input.txt file (or use/change the one in the repo) so that the main.py file has instructions on which values to put under which ids.
 
@@ -18,7 +18,7 @@ Running your servers.
 You'll need three terminal windows open to keep track of your output.
 - FIRST, set up the connection your original server 'fab run_server' in the first terminal window.
 - Then, set up the connection from all other servers to the original server 'fab run_servers' in the second terminal window,
-- Lastly, run the main fuction with your input to put in the values, and then get them respectively 'fab the_special'.
+- Lastly, run the main function with your input to put in the values, and then get them respectively 'fab the_special'.
 
 
 a description of the following:
@@ -33,7 +33,7 @@ major interfaces you implemented
 
 
 how you handle failures
-- handle errors when trying to connect to another server that isnt responding.
+- handle errors when trying to connect to another server that isn't responding.
 - handled error of keys not being found
 - had a coding failure involving weakly referenced objects (it was a dictionary) so we swapped over to text files 
 
