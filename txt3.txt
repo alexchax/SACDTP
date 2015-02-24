@@ -1,0 +1,21 @@
+[slice330.pcvm3-1.instageni.lsu.edu] Executing task 'runservers'
+[slice330.pcvm3-1.instageni.lsu.edu] run: python server.py 10.0.0.255
+[slice330.pcvm3-1.instageni.lsu.edu] out: doing this
+[slice330.pcvm3-1.instageni.lsu.edu] out: done doing this
+[slice330.pcvm3-1.instageni.lsu.edu] out: connecting to: 10.0.0.255
+[slice330.pcvm3-1.instageni.lsu.edu] out: 250000 500000 {} 10.2.1.0 10.6.1.23
+[slice330.pcvm3-1.instageni.lsu.edu] out: connection between: 10.6.1.23 and 10.2.1.0 established
+[slice330.pcvm3-1.instageni.lsu.edu] out: 10.6.1.23
+[slice330.pcvm3-1.instageni.lsu.edu] out: doing put
+[slice330.pcvm3-1.instageni.lsu.edu] out: <rpyc.core.protocol.Connection 'conn1' object at 0x7facbbe7ab50>
+[slice330.pcvm3-1.instageni.lsu.edu] out: 256000:2 added to DHT at 10.6.1.23
+[slice330.pcvm3-1.instageni.lsu.edu] out: doing put
+[slice330.pcvm3-1.instageni.lsu.edu] out: <rpyc.core.protocol.Connection 'conn1' object at 0x7facbbe7ab50>
+[slice330.pcvm3-1.instageni.lsu.edu] out: key: 560000 not found on server 10.6.1.23 with ids: 250000 - 500000
+[slice330.pcvm3-1.instageni.lsu.edu] out: passed to: 10.2.1.0
+[slice330.pcvm3-1.instageni.lsu.edu] out: doing put
+[slice330.pcvm3-1.instageni.lsu.edu] out: <rpyc.core.protocol.Connection 'conn1' object at 0x7facbbe7ab50>
+[slice330.pcvm3-1.instageni.lsu.edu] out: key: 560000 not found on server 10.6.1.23 with ids: 250000 - 500000
+[slice330.pcvm3-1.instageni.lsu.edu] out: passed to: 10.2.1.0
+[slice330.pcvm3-1.instageni.lsu.edu] out: Disconnecting from root@pcvm3-1.instageni.lsu.edu:49178... 
+done.

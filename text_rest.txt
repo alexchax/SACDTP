@@ -1,0 +1,98 @@
+[slice330.pcvm3-1.instageni.metrodatacenter.com] Executing task 'run_servers'
+[slice330.pcvm2-2.instageni.rnoc.gatech.edu] Executing task 'run_servers'
+[slice330.pcvm3-2.instageni.illinois.edu] Executing task 'run_servers'
+[slice330.pcvm5-7.lan.sdn.uky.edu] Executing task 'run_servers'
+[slice330.pcvm3-1.instageni.lsu.edu] Executing task 'run_servers'
+[slice330.pcvm2-2.instageni.maxgigapop.net] Executing task 'run_servers'
+[slice330.pcvm1-1.instageni.iu.edu] Executing task 'run_servers'
+[slice330.pcvm3-4.instageni.rnet.missouri.edu] Executing task 'run_servers'
+[slice330.pcvm3-7.instageni.nps.edu] Executing task 'run_servers'
+[slice330.pcvm2-1.instageni.nysernet.org] Executing task 'run_servers'
+[slice330.pcvm3-11.genirack.nyu.edu] Executing task 'run_servers'
+[slice330.pcvm5-1.instageni.northwestern.edu] Executing task 'run_servers'
+[slice330.pcvm5-2.instageni.cs.princeton.edu] Executing task 'run_servers'
+[slice330.pcvm3-3.instageni.rutgers.edu] Executing task 'run_servers'
+[slice330.pcvm1-6.instageni.sox.net] Executing task 'run_servers'
+[slice330.pcvm3-1.instageni.stanford.edu] Executing task 'run_servers'
+[slice330.pcvm2-1.instageni.idre.ucla.edu] Executing task 'run_servers'
+[slice330.pcvm4-1.utahddc.geniracks.net] Executing task 'run_servers'
+[slice330.pcvm1-1.instageni.wisc.edu] Executing task 'run_servers'
+[slice330.pcvm1-1.instageni.iu.edu] run: python server.py 10.0.0.255
+[slice330.pcvm1-1.instageni.iu.edu] out: ['server.py', '10.0.0.255']
+[slice330.pcvm1-1.instageni.iu.edu] out: connecting to: 10.0.0.255
+[slice330.pcvm1-1.instageni.iu.edu] out: 244 488 {} 10.16.1.9 10.8.1.9
+[slice330.pcvm5-2.instageni.cs.princeton.edu] run: python server.py 10.0.0.255
+[slice330.pcvm5-2.instageni.cs.princeton.edu] out: ['server.py', '10.0.0.255']
+[slice330.pcvm5-2.instageni.cs.princeton.edu] out: connecting to: 10.0.0.255
+[slice330.pcvm5-2.instageni.cs.princeton.edu] out: 62500 125000 {} 10.7.1.9 10.14.0.252
+[slice330.pcvm3-11.genirack.nyu.edu] run: python server.py 10.0.0.255
+[slice330.pcvm3-11.genirack.nyu.edu] out: ['server.py', '10.0.0.255']
+[slice330.pcvm3-11.genirack.nyu.edu] out: connecting to: 10.0.0.255
+[slice330.pcvm3-11.genirack.nyu.edu] out: 1953 3906 {} 10.4.1.1 10.12.1.7
+[slice330.pcvm3-2.instageni.illinois.edu] run: python server.py 10.0.0.255
+[slice330.pcvm3-2.instageni.illinois.edu] out: ['server.py', '10.0.0.255']
+[slice330.pcvm3-2.instageni.illinois.edu] out: connecting to: 10.0.0.255
+[slice330.pcvm3-2.instageni.illinois.edu] out: 3906 7812 {} 10.3.0.251 10.4.1.1
+[slice330.pcvm3-1.instageni.lsu.edu] run: python server.py 10.0.0.255
+[slice330.pcvm3-1.instageni.lsu.edu] out: ['server.py', '10.0.0.255']
+[slice330.pcvm3-1.instageni.lsu.edu] out: connecting to: 10.0.0.255
+[slice330.pcvm3-1.instageni.lsu.edu] out: 15 30 {} 10.20.0.223 10.6.1.23
+[slice330.pcvm4-1.utahddc.geniracks.net] run: python server.py 10.0.0.255
+[slice330.pcvm4-1.utahddc.geniracks.net] out: ['server.py', '10.0.0.255']
+[slice330.pcvm4-1.utahddc.geniracks.net] out: connecting to: 10.0.0.255
+[slice330.pcvm4-1.utahddc.geniracks.net] out: 500000 0 {} 10.0.0.255 10.19.1.11
+[slice330.pcvm3-1.instageni.metrodatacenter.com] run: python server.py 10.0.0.255
+[slice330.pcvm3-1.instageni.metrodatacenter.com] out: ['server.py', '10.0.0.255']
+[slice330.pcvm3-1.instageni.metrodatacenter.com] out: connecting to: 10.0.0.255
+[slice330.pcvm3-1.instageni.metrodatacenter.com] out: 31250 62500 {} 10.14.0.252 10.2.1.0
+[slice330.pcvm2-1.instageni.idre.ucla.edu] run: python server.py 10.0.0.255
+[slice330.pcvm2-1.instageni.idre.ucla.edu] out: ['server.py', '10.0.0.255']
+[slice330.pcvm2-1.instageni.idre.ucla.edu] out: connecting to: 10.0.0.255
+[slice330.pcvm2-1.instageni.idre.ucla.edu] out: 61 122 {} 10.9.1.4 10.18.1.16
+[slice330.pcvm5-1.instageni.northwestern.edu] run: python server.py 10.0.0.255
+[slice330.pcvm5-1.instageni.northwestern.edu] out: ['server.py', '10.0.0.255']
+[slice330.pcvm5-1.instageni.northwestern.edu] out: connecting to: 10.0.0.255
+[slice330.pcvm5-1.instageni.northwestern.edu] out: 250000 500000 {} 10.19.1.11 10.13.1.13
+[slice330.pcvm2-2.instageni.rnoc.gatech.edu] run: python server.py 10.0.0.255
+[slice330.pcvm2-2.instageni.rnoc.gatech.edu] out: ['server.py', '10.0.0.255']
+[slice330.pcvm2-2.instageni.rnoc.gatech.edu] out: connecting to: 10.0.0.255
+[slice330.pcvm2-2.instageni.rnoc.gatech.edu] out: 7812 15625 {} 10.15.1.8 10.3.0.251
+[slice330.pcvm3-7.instageni.nps.edu] run: python server.py 10.0.0.255
+[slice330.pcvm3-7.instageni.nps.edu] out: ['server.py', '10.0.0.255']
+[slice330.pcvm3-7.instageni.nps.edu] out: connecting to: 10.0.0.255
+[slice330.pcvm3-7.instageni.nps.edu] out: 3 7 {} 10.17.1.3 10.10.0.65
+[slice330.pcvm3-3.instageni.rutgers.edu] run: python server.py 10.0.0.255
+[slice330.pcvm3-3.instageni.rutgers.edu] out: ['server.py', '10.0.0.255']
+[slice330.pcvm3-3.instageni.rutgers.edu] out: connecting to: 10.0.0.255
+[slice330.pcvm3-3.instageni.rutgers.edu] out: 15625 31250 {} 10.2.1.0 10.15.1.8
+[slice330.pcvm1-1.instageni.wisc.edu] run: python server.py 10.0.0.255
+[slice330.pcvm1-1.instageni.wisc.edu] out: ['server.py', '10.0.0.255']
+[slice330.pcvm1-1.instageni.wisc.edu] out: connecting to: 10.0.0.255
+[slice330.pcvm1-1.instageni.wisc.edu] out: 30 61 {} 10.18.1.16 10.20.0.223
+[slice330.pcvm2-1.instageni.nysernet.org] run: python server.py 10.0.0.255
+[slice330.pcvm2-1.instageni.nysernet.org] out: ['server.py', '10.0.0.255']
+[slice330.pcvm2-1.instageni.nysernet.org] out: connecting to: 10.0.0.255
+[slice330.pcvm2-1.instageni.nysernet.org] out: 976 1953 {} 10.12.1.7 10.11.1.11
+[slice330.pcvm2-2.instageni.maxgigapop.net] run: python server.py 10.0.0.255
+[slice330.pcvm2-2.instageni.maxgigapop.net] out: ['server.py', '10.0.0.255']
+[slice330.pcvm2-2.instageni.maxgigapop.net] out: connecting to: 10.0.0.255
+[slice330.pcvm2-2.instageni.maxgigapop.net] out: 125000 250000 {} 10.13.1.13 10.7.1.9
+[slice330.pcvm3-4.instageni.rnet.missouri.edu] run: python server.py 10.0.0.255
+[slice330.pcvm3-4.instageni.rnet.missouri.edu] out: ['server.py', '10.0.0.255']
+[slice330.pcvm3-4.instageni.rnet.missouri.edu] out: connecting to: 10.0.0.255
+[slice330.pcvm3-4.instageni.rnet.missouri.edu] out: 122 244 {} 10.8.1.9 10.9.1.4
+[slice330.pcvm1-6.instageni.sox.net] run: python server.py 10.0.0.255
+[slice330.pcvm1-6.instageni.sox.net] out: ['server.py', '10.0.0.255']
+[slice330.pcvm1-6.instageni.sox.net] out: connecting to: 10.0.0.255
+[slice330.pcvm1-6.instageni.sox.net] out: 488 976 {} 10.11.1.11 10.16.1.9
+[slice330.pcvm5-7.lan.sdn.uky.edu] run: python server.py 10.0.0.255
+[slice330.pcvm5-7.lan.sdn.uky.edu] out: ['server.py', '10.0.0.255']
+[slice330.pcvm5-7.lan.sdn.uky.edu] out: connecting to: 10.0.0.255
+[slice330.pcvm5-7.lan.sdn.uky.edu] out: 1 3 {} 10.10.0.65 10.5.0.35
+[slice330.pcvm5-7.lan.sdn.uky.edu] out: 1:2 added to DHT at 10.5.0.35
+[slice330.pcvm5-7.lan.sdn.uky.edu] out: key: 3 not found on server 10.5.0.35 with ids: 1 - 3
+[slice330.pcvm5-7.lan.sdn.uky.edu] out: passed to: 10.10.0.65
+[slice330.pcvm3-1.instageni.stanford.edu] run: python server.py 10.0.0.255
+[slice330.pcvm3-1.instageni.stanford.edu] out: ['server.py', '10.0.0.255']
+[slice330.pcvm3-1.instageni.stanford.edu] out: connecting to: 10.0.0.255
+[slice330.pcvm3-1.instageni.stanford.edu] out: 7 15 {} 10.6.1.23 10.17.1.3

@@ -1,0 +1,35 @@
+[slice330.pcvm3-1.geni.case.edu] Executing task 'run_server'
+[slice330.pcvm3-1.geni.case.edu] run: python server.py 
+[slice330.pcvm3-1.geni.case.edu] out: doing this
+[slice330.pcvm3-1.geni.case.edu] out: done doing this
+[slice330.pcvm3-1.geni.case.edu] out: connecting to: 10.0.0.255
+[slice330.pcvm3-1.geni.case.edu] out: connection not found
+[slice330.pcvm3-1.geni.case.edu] out: None
+[slice330.pcvm3-1.geni.case.edu] out: 10.0.0.255
+[slice330.pcvm3-1.geni.case.edu] out: connected to: 10.2.1.0
+[slice330.pcvm3-1.geni.case.edu] out: there
+[slice330.pcvm3-1.geni.case.edu] out: 0 500000 {} 10.2.1.0 10.0.0.255
+[slice330.pcvm3-1.geni.case.edu] out: connected to: 10.6.1.23
+[slice330.pcvm3-1.geni.case.edu] out: here
+[slice330.pcvm3-1.geni.case.edu] out: 0 250000 {} 10.6.1.23 10.0.0.255
+[slice330.pcvm3-1.geni.case.edu] out: doing put
+[slice330.pcvm3-1.geni.case.edu] out: None
+[slice330.pcvm3-1.geni.case.edu] out: getting connection in put: 10.6.1.23 18861
+[slice330.pcvm3-1.geni.case.edu] out: 1:1 added to DHT at 10.0.0.255
+[slice330.pcvm3-1.geni.case.edu] out: doing put
+[slice330.pcvm3-1.geni.case.edu] out: None
+[slice330.pcvm3-1.geni.case.edu] out: getting connection in put: 10.6.1.23 18861
+[slice330.pcvm3-1.geni.case.edu] out: key: 256000 not found on server 10.0.0.255 with ids: 0 - 250000
+[slice330.pcvm3-1.geni.case.edu] out: passed to: 10.6.1.23
+[slice330.pcvm3-1.geni.case.edu] out: doing put
+[slice330.pcvm3-1.geni.case.edu] out: None
+[slice330.pcvm3-1.geni.case.edu] out: getting connection in put: 10.6.1.23 18861
+[slice330.pcvm3-1.geni.case.edu] out: key: 560000 not found on server 10.0.0.255 with ids: 0 - 250000
+[slice330.pcvm3-1.geni.case.edu] out: passed to: 10.6.1.23
+[slice330.pcvm3-1.geni.case.edu] out: doing put
+[slice330.pcvm3-1.geni.case.edu] out: None
+[slice330.pcvm3-1.geni.case.edu] out: getting connection in put: 10.6.1.23 18861
+[slice330.pcvm3-1.geni.case.edu] out: key: 560000 not found on server 10.0.0.255 with ids: 0 - 250000
+[slice330.pcvm3-1.geni.case.edu] out: passed to: 10.6.1.23
+[slice330.pcvm3-1.geni.case.edu] out: Disconnecting from root@pcvm3-1.geni.case.edu:49179... 
+done.

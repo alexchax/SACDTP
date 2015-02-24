@@ -1,0 +1,8 @@
+[slice330.pcvm3-1.instageni.metrodatacenter.com] Executing task 'run_servers'
+[slice330.pcvm3-1.instageni.metrodatacenter.com] run: python server.py 10.0.0.255
+[slice330.pcvm3-1.instageni.metrodatacenter.com] out: doing this
+[slice330.pcvm3-1.instageni.metrodatacenter.com] out: done doing this
+[slice330.pcvm3-1.instageni.metrodatacenter.com] out: connecting to: 10.0.0.255
+[slice330.pcvm3-1.instageni.metrodatacenter.com] out: 500000 0 {} 10.0.0.255 10.2.1.0
+[slice330.pcvm3-1.instageni.metrodatacenter.com] out: connection between: 10.2.1.0 and 10.0.0.255 established
+[slice330.pcvm3-1.instageni.metrodatacenter.com] out: 10.2.1.0
