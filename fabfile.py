@@ -1,37 +1,37 @@
 from fabric.api import *
 env.hosts = [
-  "slice330.pcvm3-1.geni.case.edu",
-      "slice330.pcvm3-1.instageni.metrodatacenter.com",
-    "slice330.pcvm2-2.instageni.rnoc.gatech.edu",
-    "slice330.pcvm3-2.instageni.illinois.edu",
-    "slice330.pcvm5-7.lan.sdn.uky.edu",
-    "slice330.pcvm3-1.instageni.lsu.edu",
-    "slice330.pcvm2-2.instageni.maxgigapop.net",
-    "slice330.pcvm1-1.instageni.iu.edu",
-    "slice330.pcvm3-4.instageni.rnet.missouri.edu",
-    "slice330.pcvm3-7.instageni.nps.edu",
-    "slice330.pcvm2-1.instageni.nysernet.org",
-    "slice330.pcvm3-11.genirack.nyu.edu",
-    "slice330.pcvm5-1.instageni.northwestern.edu",
-    "slice330.pcvm5-2.instageni.cs.princeton.edu",
-    "slice330.pcvm3-3.instageni.rutgers.edu",
-    "slice330.pcvm1-6.instageni.sox.net",
-    "slice330.pcvm3-1.instageni.stanford.edu",
-    "slice330.pcvm2-1.instageni.idre.ucla.edu",
-    "slice330.pcvm4-1.utahddc.geniracks.net",
-    "slice330.pcvm1-1.instageni.wisc.edu",
+  "slice334.pcvm3-1.geni.case.edu",
+      "slice334.pcvm3-1.instageni.metrodatacenter.com",
+    "slice334.pcvm2-2.instageni.rnoc.gatech.edu",
+    "slice334.pcvm3-2.instageni.illinois.edu",
+    "slice334.pcvm5-7.lan.sdn.uky.edu",
+    "slice334.pcvm3-1.instageni.lsu.edu",
+    "slice334.pcvm2-2.instageni.maxgigapop.net",
+    "slice334.pcvm1-1.instageni.iu.edu",
+    "slice334.pcvm3-4.instageni.rnet.missouri.edu",
+    "slice334.pcvm3-7.instageni.nps.edu",
+    "slice334.pcvm2-1.instageni.nysernet.org",
+    "slice334.pcvm3-11.genirack.nyu.edu",
+    "slice334.pcvm5-1.instageni.northwestern.edu",
+    "slice334.pcvm5-2.instageni.cs.princeton.edu",
+    "slice334.pcvm3-3.instageni.rutgers.edu",
+    "slice334.pcvm1-6.instageni.sox.net",
+    "slice334.pcvm3-1.instageni.stanford.edu",
+    "slice334.pcvm2-1.instageni.idre.ucla.edu",
+    "slice334.pcvm4-1.utahddc.geniracks.net",
+    "slice334.pcvm1-1.instageni.wisc.edu",
   ]
 env.roledefs.update({
-    'the_special': ["slice330.pcvm3-1.geni.case.edu"],
-    'not_special': ["slice330.pcvm3-1.instageni.metrodatacenter.com",
-    "slice330.pcvm3-1.instageni.lsu.edu",
-    "slice330.pcvm5-7.lan.sdn.uky.edu",
-    "slice330.pcvm3-1.instageni.lsu.edu",
-    "slice330.pcvm2-2.instageni.maxgigapop.net",
-    "slice330.pcvm1-1.instageni.iu.edu",
-    "slice330.pcvm3-4.instageni.rnet.missouri.edu",
-    "slice330.pcvm3-7.instageni.nps.edu",
-    "slice330.pcvm2-1.instageni.nysernet.org"],
+    'the_special': ["slice334.pcvm3-1.geni.case.edu"],
+    'not_special': ["slice334.pcvm3-1.instageni.metrodatacenter.com",
+    "slice334.pcvm2-2.instageni.rnoc.gatech.edu",
+    "slice334.pcvm3-2.instageni.illinois.edu",
+    "slice334.pcvm5-7.lan.sdn.uky.edu",
+    "slice334.pcvm3-1.instageni.lsu.edu",
+    "slice334.pcvm2-2.instageni.maxgigapop.net",
+    "slice334.pcvm1-1.instageni.iu.edu",
+    "slice334.pcvm3-4.instageni.rnet.missouri.edu",
+    "slice334.pcvm3-7.instageni.nps.edu"],
 })
 
 
@@ -53,7 +53,7 @@ def setup_servers():
     run('apt-get install -y python-setuptools')
     run('apt-get install -y python-pip')
     run('sudo pip install rpyc')
- 
+
 @roles('the_special')
 def run_server():
     run('python server.py ')
@@ -68,5 +68,8 @@ def the_special():
 def run_servers():
     run('python server.py 10.0.0.255')
 
+def pingtest():
+    run('ping -c 3 www.yahoo.com')
+
 def uptime():
-    run('ifconfig')
+    run('uptime')
