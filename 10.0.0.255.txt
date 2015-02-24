@@ -24,4 +24,5 @@
 [slice330.pcvm3-1.geni.case.edu] out: got fromlocalhost
 [slice330.pcvm3-1.geni.case.edu] out: get: 256000 not found on server 10.0.0.255 with ids: 0 : 250000
 [slice330.pcvm3-1.geni.case.edu] out: passed to: 10.6.1.23
-[slice330.pcvm3-1.geni.case.edu] out: Disconnecting from root@pcvm3-1.geni.case.edu:49179... done.
+[slice330.pcvm3-1.geni.case.edu] out: Disconnecting from root@pcvm3-1.geni.case.edu:49179... 
+done.
