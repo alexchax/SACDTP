@@ -27,13 +27,13 @@ def updateDHT(DHT):
 
 class Node:
     def __init__(self):
-        self.neigbour_ip = None
+        self.neighbour_ip = None
         self.DHT = {}
         self.Max = 1000000
         self.node_id = None
         self.node_ip = None
-        self.neigbour_id = None
-        self.neigbour_port = 18861
+        self.neighbour_id = None
+        self.neighbour_port = 18861
 
 
 class MyService(rpyc.Service):
@@ -137,6 +137,7 @@ class MyService(rpyc.Service):
 
     def exposed_get(self, key):
         # returns the value that key stores
+        # returns the value that key stores
         # if not rpyc.Service.conn:
             # try:
             #     #check to see if rpyc connection has been made
@@ -170,7 +171,7 @@ class MyService(rpyc.Service):
             try:
                 # check if a connection is currently active
                 conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
-                print "getting connection in put: " + str(rpyc.Service.node.neigbour_ip) + " " + str(rpyc.Service.node.neigbour_port)
+                print "getting connection in put: " + str(rpyc.Service.node.neighbour_ip) + " " + str(rpyc.Service.node.neighbour_port)
             except socket.error:
                 conn = None
                 return False
