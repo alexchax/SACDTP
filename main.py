@@ -14,9 +14,9 @@ def main():
             for line in f:
                 s = line.split(" ")
                 if s[0] == "get" and len(s) == 2:
-                        print getValue(int(s[1].strip()), conn)
+                    print getValue(int(s[1].strip()), conn)
                 if s[0] == "put" and len(s) == 3:
-                    print putValue(int(s[1].strip()), conn)
+                    print putValue(int(s[1].strip()),int(s[2].strip()), conn)
     while True:
         line = raw_input()
         if line == "exit":
