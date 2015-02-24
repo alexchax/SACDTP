@@ -128,9 +128,9 @@ class MyService(rpyc.Service):
             #return node_id, neighbour id, DHT, neighbour ip
             return middle_id, n_id, top_DHT, n_ip
 
-    def exposed_get(self, key):
+    def exposed_get(self, key, ip):
         # returns the value that key stores
-
+        print "got from" + ip
         # if the current nodes has the table that holds the key
         if rpyc.Service.node.node_id <= key < rpyc.Service.node.neighbour_id or rpyc.Service.node.neighbour_id < rpyc.Service.node.node_id < key:
             print "get: " + str(key)
@@ -144,7 +144,7 @@ class MyService(rpyc.Service):
                 rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
                 print "get: " + str(key) + " not found" + " on server " + rpyc.Service.node.node_ip + " with ids: " + str(rpyc.Service.node.node_id) + " : " + str(rpyc.Service.node.neighbour_id)
                 print "passed to: " + rpyc.Service.node.neighbour_ip
-                return rpyc.Service.node.conn.root.get(key)
+                return rpyc.Service.node.conn.root.get(key, rpyc.Service.node.node_id)
             except socket.error:
                 print "connection error"
                 return None
@@ -169,8 +169,8 @@ class MyService(rpyc.Service):
                 rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
                 print "key: " + str(key) + " not found on server " + rpyc.Service.node.node_ip + " with ids: " + str(rpyc.Service.node.node_id) + " - " + str(rpyc.Service.node.neighbour_id)
                 print "passed to: " + rpyc.Service.node.neighbour_ip
-                rpyc.Service.node.conn.root.put(key, value, rpyc.Service.node.node_ip)
-                return True
+                return rpyc.Service.node.conn.root.put(key, value, rpyc.Service.node.node_ip)
+                # return True
             except socket.error:
                 print "connection error"
                 return False
