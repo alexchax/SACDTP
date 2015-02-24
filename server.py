@@ -140,8 +140,8 @@ class MyService(rpyc.Service):
                 return value
             except KeyError:
                 return None
-            except ReferenceError:
-                return None
+            # except ReferenceError:
+            #     return None
         else:
             #otherwise go to the next nodes hashtable and check it
             try:
