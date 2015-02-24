@@ -2,13 +2,13 @@ from rpyc import *
 import fileinput
 
 def getValue(key, conn):
-    return conn.root.get(key, "10.19.1.11")
+    return conn.root.get(key, "10.0.0.225")
 def putValue(key, value, conn):
-    return conn.root.put(key, value, "10.19.1.11")
+    return conn.root.put(key, value, "10.0.0.225")
 
 
 def main():
-    conn = connect("10.19.1.11", 18861)
+    conn = connect("10.0.0.225", 18861)
     while True:
         line = raw_input()
         s = line.split(" ")
