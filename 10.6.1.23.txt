@@ -6,10 +6,12 @@
 [slice330.pcvm3-1.instageni.lsu.edu] out: 10.6.1.23
 [slice330.pcvm3-1.instageni.lsu.edu] out: got from 10.0.0.255
 [slice330.pcvm3-1.instageni.lsu.edu] out: doing put
-[slice330.pcvm3-1.instageni.lsu.edu] out: 256000:1 added to DHT at 10.6.1.23
+[slice330.pcvm3-1.instageni.lsu.edu] out: 256000:2 added to DHT at 10.6.1.23
 [slice330.pcvm3-1.instageni.lsu.edu] out: got from 10.0.0.255
 [slice330.pcvm3-1.instageni.lsu.edu] out: doing put
 [slice330.pcvm3-1.instageni.lsu.edu] out: key: 567000 not found on server 10.6.1.23 with ids: 250000 - 500000
 [slice330.pcvm3-1.instageni.lsu.edu] out: passed to: 10.2.1.0
+[slice330.pcvm3-1.instageni.lsu.edu] out: got from10.0.0.255
+[slice330.pcvm3-1.instageni.lsu.edu] out: get: 256000
 [slice330.pcvm3-1.instageni.lsu.edu] out: Disconnecting from root@pcvm3-1.instageni.lsu.edu:49178... 
 done.
