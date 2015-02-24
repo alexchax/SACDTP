@@ -23,16 +23,19 @@ You'll need three terminal windows open to keep track of your output.
 
 a description of the following:
 
-the structure of your code, including any major interfaces you implemented
-for example, in the 2PC project, the RPC interface your replicas expose to the coordinator
+the structure of your code
+- for structure of code look at comments in code!
+
+major interfaces you implemented
 - used RPyC to implement remote procedure calls.
 - used GeeProject Nodes to implement "users".
 - used fabric to install everything to servers
 
 
 how you handle failures
-for example, in the 2PC project, how are failures reflected to clients via the RPC interface that the coordinator exposes, if at all
-- handle errors when trying to connect to another server that isnt responding
+- handle errors when trying to connect to another server that isnt responding.
+- handled error of keys not being found
+- had a coding failure involving weakly referenced objects (it was a dictionary) so we swapped over to text files 
 
 Test cases
 -

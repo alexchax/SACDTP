@@ -25,6 +25,8 @@ def updateDHT(DHT):
             DHTFile.write(str(key) + " : " + str(DHT[key]) + "\n")
         DHTFile.close()
 
+# class that stores all the information about the current node
+# also stores all default variables (MAX and PORT currently)
 class Node:
     def __init__(self):
         self.neighbour_ip = None
@@ -37,7 +39,7 @@ class Node:
         self.neighbour_port = 18861
         self.conn = None
 
-
+# Service is the RPyC class we use that allows for RPC's
 class MyService(rpyc.Service):
     rpyc.Service.node = Node()
     rpyc.Service.node.neighbour_ip = socket.gethostbyname(socket.gethostname())
@@ -96,6 +98,7 @@ class MyService(rpyc.Service):
             rpyc.Service.node.neighbour_id = middle_id
             updateDHT(bottom_DHT)
             rpyc.Service.node.neighbour_ip = node_ip
+            #node_id, #neighbour_id, neighbour_ip
             return middle_id, 0, top_DHT, rpyc.Service.node.node_ip
         else:
             # if current node is not the node connected to the "start" node
