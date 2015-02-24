@@ -84,6 +84,7 @@ class MyService(rpyc.Service):
         # if the current node is the only one in the Chord Scheme use this
         if rpyc.Service.node.node_id == 0 and rpyc.Service.node.neighbour_id == rpyc.Service.node.Max:
             print "there"
+            rpyc.Service.node.DHT = getDHT()
             middle_id = rpyc.Service.node.Max/2
             top_DHT = {}
             bottom_DHT = {}
