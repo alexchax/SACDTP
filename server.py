@@ -136,7 +136,7 @@ class MyService(rpyc.Service):
             print "get: " + str(key)
             try:
                 #this is a change
-                value = rpyc.Service.node.DHT[key]
+                value = int(rpyc.Service.node.DHT[key])
                 return value
             except KeyError:
                 return None
@@ -165,7 +165,7 @@ class MyService(rpyc.Service):
                 print str(key) + ":" + str(value) + " added to DHT at " + rpyc.Service.node.node_ip
                 return True
             except ReferenceError:
-                print str()
+                print "Reference Error"
                 return False
         # look in the next table to add it to the DHT
         else:
