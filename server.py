@@ -146,8 +146,7 @@ class MyService(rpyc.Service):
                 rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
                 print "get: " + str(key) + " not found" + " on server " + rpyc.Service.node.node_ip + " with ids: " + str(rpyc.Service.node.node_id) + " : " + str(rpyc.Service.node.neighbour_id)
                 print "passed to: " + rpyc.Service.node.neighbour_ip
-                value = rpyc.Service.node.conn.root.get(key)
-                return value
+                return rpyc.Service.node.conn.root.get(key)
             except socket.error:
                 print "connection error"
                 return None
@@ -158,10 +157,14 @@ class MyService(rpyc.Service):
         print "doing put"
         # if the current table is the correct table add the key/value pair to the DHT
         if rpyc.Service.node.node_id <= key < rpyc.Service.node.neighbour_id or rpyc.Service.node.neighbour_id < rpyc.Service.node.node_id < key:
-            rpyc.Service.node.DHT[key] = value
-            updateDHT(rpyc.Service.node.DHT)
-            print str(key) + ":" + str(value) + " added to DHT at " + rpyc.Service.node.node_ip
-            return True
+            try:
+                rpyc.Service.node.DHT[key] = value
+                updateDHT(rpyc.Service.node.DHT)
+                print str(key) + ":" + str(value) + " added to DHT at " + rpyc.Service.node.node_ip
+                return True
+            except ReferenceError:
+                print "WTF"
+                return False
         # look in the next table to add it to the DHT
         else:
             try:
