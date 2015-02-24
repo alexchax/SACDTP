@@ -48,6 +48,7 @@ class MyService(rpyc.Service):
         rpyc.Service.node.neighbour_ip = sys.argv[1]
         rpyc.Service.node.node_port = sys.argv[2]
     rpyc.Service.node.DHT = getDHT()
+    print rpyc.Service.node.DHT
     # maximum number of values in the DHT's
     rpyc.Service.node.Max = 1000000
     # node id - index of first value in current DHT
@@ -131,15 +132,12 @@ class MyService(rpyc.Service):
     def exposed_get(self, key, ip):
         # returns the value that key stores
         print "got from" + ip
+        print rpyc.Service.node.conn
         # if the current nodes has the table that holds the key
         if rpyc.Service.node.node_id <= key < rpyc.Service.node.neighbour_id or rpyc.Service.node.neighbour_id < rpyc.Service.node.node_id < key:
             print "get: " + str(key)
             try:
-                #this is a change
-                print rpyc.Service.node.DHT
-                print rpyc.Service.node.DHT[key]
-                value = int(rpyc.Service.node.DHT[key])
-                return 1
+                return rpyc.Service.node.DHT.get(key)
             except KeyError:
                 return None
             # except ReferenceError:
