@@ -138,6 +138,7 @@ class MyService(rpyc.Service):
             print "get: " + str(key)
             try:
                 val = rpyc.Service.node.DHT[key]
+                updateDHT(rpyc.Service.node.DHT)
                 return val
             except KeyError:
                 return None
