@@ -137,7 +137,8 @@ class MyService(rpyc.Service):
         if rpyc.Service.node.node_id <= key < rpyc.Service.node.neighbour_id or rpyc.Service.node.neighbour_id < rpyc.Service.node.node_id < key:
             print "get: " + str(key)
             try:
-                return rpyc.Service.node.DHT.get(key)
+                val = rpyc.Service.node.DHT[key]
+                return val
             except KeyError:
                 return None
             # except ReferenceError:
