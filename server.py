@@ -150,6 +150,7 @@ class MyService(rpyc.Service):
                     file_key, file_value = line.partition(":")[::2]
                     if int(file_key.strip()) == key:
                         return int(file_value)
+                f.close()
                 return None
         else:
             #otherwise go to the next nodes hashtable and check it
@@ -180,6 +181,7 @@ class MyService(rpyc.Service):
             #     return False
             with open("DHT.txt", "w") as f:
                 f.write(str(key) + " : " + str(value))
+                f.close()
             return True
         # look in the next table to add it to the DHT
         else:
