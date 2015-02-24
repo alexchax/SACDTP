@@ -145,8 +145,8 @@ class MyService(rpyc.Service):
             # except ReferenceError:
             #     print "REFERENCE ERROR"
             #     return None
-            with open("DHT.txt", "r") as file:
-                for line in file:
+            with open("DHT.txt", "r") as f:
+                for line in f:
                     file_key, file_value = line.partition(":")[::2]
                     if int(file_key.strip()) == key:
                         return int(file_value)
@@ -169,15 +169,17 @@ class MyService(rpyc.Service):
         print "doing put"
         # if the current table is the correct table add the key/value pair to the DHT
         if rpyc.Service.node.node_id <= key < rpyc.Service.node.neighbour_id or rpyc.Service.node.neighbour_id < rpyc.Service.node.node_id < key:
-            try:
-                rpyc.Service.node.DHT[key] = value
-                updateDHT(rpyc.Service.node.DHT)
-                print str(key) + ":" + str(value) + " added to DHT at " + rpyc.Service.node.node_ip
-                print rpyc.Service.node.DHT
-                return True
-            except ReferenceError:
-                print "Reference Error"
-                return False
+            # try:
+            #     rpyc.Service.node.DHT[key] = value
+            #     updateDHT(rpyc.Service.node.DHT)
+            #     print str(key) + ":" + str(value) + " added to DHT at " + rpyc.Service.node.node_ip
+            #     print rpyc.Service.node.DHT
+            #     return True
+            # except ReferenceError:
+            #     print "Reference Error"
+            #     return False
+            with open("DHT.txt", "w") as f:
+                f.write(str(key) + " : " + str(value))
         # look in the next table to add it to the DHT
         else:
             try:
