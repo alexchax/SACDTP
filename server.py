@@ -180,7 +180,7 @@ class MyService(rpyc.Service):
             #     print "Reference Error"
             #     return False
             with open("DHT.txt", "a") as f:
-                f.write(str(key) + " : " + str(value))
+                f.write(str(key) + " : " + str(value)+"\n")
                 f.close()
             return True
         # look in the next table to add it to the DHT
