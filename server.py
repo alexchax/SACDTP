@@ -25,6 +25,7 @@ def updateDHT(DHT):
             DHTFile.write(str(key) + " : " + str(DHT[key]) + "\n")
         DHTFile.close()
 
+
 # class that stores all the information about the current node
 # also stores all default variables (MAX and PORT currently)
 class Node:
@@ -38,6 +39,7 @@ class Node:
         self.neighbour_id = None
         self.neighbour_port = 18861
         self.conn = None
+
 
 # Service is the RPyC class we use that allows for RPC's
 class MyService(rpyc.Service):
