@@ -2,9 +2,9 @@ from rpyc import *
 import fileinput
 
 def getValue(key, conn):
-    return conn.root.get(key)
+    return conn.root.get(key, "10.19.1.11")
 def putValue(key, value, conn):
-    return conn.root.put(key, value)
+    return conn.root.put(key, value, "10.19.1.11")
 
 
 def main():

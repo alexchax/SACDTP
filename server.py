@@ -161,8 +161,9 @@ class MyService(rpyc.Service):
                 print "passed to: " + rpyc.Service.node.neighbour_ip
                 return conn.root.get(key)
 
-    def exposed_put(self, key, value):
+    def exposed_put(self, key, value, ip):
         # puts a key : value pair into the correct HT
+        print "got from " + ip
         print "doing put"
         print rpyc.Service.node.conn
         conn = rpyc.Service.node.conn
@@ -186,7 +187,7 @@ class MyService(rpyc.Service):
             if conn:
                 print "key: " + str(key) + " not found on server " + rpyc.Service.node.node_ip + " with ids: " + str(rpyc.Service.node.node_id) + " - " + str(rpyc.Service.node.neighbour_id)
                 print "passed to: " + rpyc.Service.node.neighbour_ip
-                return conn.root.put(key, value)
+                return conn.root.put(key, value, rpyc.Service.node.node_ip)
             else:
                 print "connection error"
                 return False
