@@ -36,6 +36,9 @@ class Node:
         self.neighbour_id = None
         self.neighbour_port = 18861
 
+    def addToDHT(self, key, value):
+        self.DHT[key] = value
+
 
 class MyService(rpyc.Service):
     rpyc.Service.node = Node()
@@ -157,7 +160,7 @@ class MyService(rpyc.Service):
         print "doing put"
         # if the current table is the correct table add the key/value pair to the DHT
         if rpyc.Service.node.node_id <= key < rpyc.Service.node.neighbour_id or rpyc.Service.node.neighbour_id < rpyc.Service.node.node_id < key:
-            rpyc.Service.node.DHT[int(key)] = int(value)
+            rpyc.Service.node.addToDHT(key, value)
             updateDHT(rpyc.Service.node.DHT)
             print str(key) + ":" + str(value) + " added to DHT at " + rpyc.Service.node.node_ip
             return True
