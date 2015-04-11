@@ -83,7 +83,7 @@ class MyService(rpyc.Service):
         # debug statement
         print str(rpyc.Service.node.node_id) + " " + str(rpyc.Service.node.neighbour_id) + " " + str(rpyc.Service.node.DHT) + " " + str(rpyc.Service.node.neighbour_ip) + " " + str(rpyc.Service.node.node_ip)
         updateDHT(rpyc.Service.node.DHT)
-        print "connection between: " + rpyc.Service.node.node_ip + " and " + rpyc.Service.node.neighbour_ip + " established" + str(rpyc.Service.node.node_port) + " " + str(rpyc.Service.node.neighbour_port)
+        print "connection between: " + rpyc.Service.node.node_ip + " and " + rpyc.Service.node.neighbour_ip + " established " + str(rpyc.Service.node.node_port) + " " + str(rpyc.Service.node.neighbour_port)
     except socket.error:
         # if arg not set or connection is unable to be set dont connect to the DHT
         print "connection not found"
@@ -139,6 +139,7 @@ class MyService(rpyc.Service):
             # set cur nodes neighbour as new node
             rpyc.Service.node.neighbour_ip = node_ip
             rpyc.Service.node.neighbour_port = node_port
+            rpyc.Service.node.neighbour_id = middle_id
             # update cur node DHT with the bottom of DHT
             updateDHT(rpyc.Service.node.DHT)
             # debug message
@@ -204,7 +205,7 @@ class MyService(rpyc.Service):
             try:
                 rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
                 print "key: " + str(key) + " not found on server " + rpyc.Service.node.node_ip + " with ids: " + str(rpyc.Service.node.node_id) + " - " + str(rpyc.Service.node.neighbour_id)
-                print "passed to: " + rpyc.Service.node.neighbour_ip
+                print "passed to: " + rpyc.Service.node.neighbour_ip + str(rpyc.Service.node.neighbour_port)
                 return rpyc.Service.node.conn.root.put(key, value, rpyc.Service.node.neighbour_ip)
                 # return True
             except socket.error:
@@ -215,10 +216,8 @@ if __name__ == "__main__":
     #start the server on the current node
     from rpyc.utils.server import ThreadedServer
     p = 18861
-    print sys.argv
 
     if len(sys.argv) == 4:
-        print sys.argv
         p = int(sys.argv[3])
     t = ThreadedServer(MyService, port=p)
     t.start()
