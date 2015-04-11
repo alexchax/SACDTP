@@ -2,11 +2,10 @@ import rpyc
 import socket
 import sys
 
-
 def getDHT():
     # pulls all values from a textfile and puts them into a DHT
     DHT = {}
-    filename = "DHT.txt"
+    filename = "DHT" + str(rpyc.Service.node.node_port) + ".txt"
     try:
         with open(filename, "r") as DHTFile:
             for line in DHTFile:
@@ -20,7 +19,7 @@ def getDHT():
 
 def updateDHT(DHT):
     # writes the current DHT into a file (key) : (value)
-    with open("DHT.txt", "w") as DHTFile:
+    with open("DHT" + str(rpyc.Service.node.node_port) + ".txt", "w") as DHTFile:
         for key in DHT:
             DHTFile.write(str(key) + " : " + str(DHT[key]) + "\n")
         DHTFile.close()
@@ -71,7 +70,7 @@ class MyService(rpyc.Service):
         # setup connection using rpyc
         rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
         # uses the inital connection method to split up the DHT
-        rpyc.Service.node.node_id, rpyc.Service.node.neighbour_id, rpyc.Service.node.DHT, rpyc.Service.node.neighbour_ip = rpyc.Service.node.conn.root.connect(rpyc.Service.node.node_ip)
+        rpyc.Service.node.node_id, rpyc.Service.node.neighbour_id, rpyc.Service.node.DHT, rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port = rpyc.Service.node.conn.root.connect(rpyc.Service.node.node_ip, rpyc.Service.node.node_port)
         # debug statement
         print str(rpyc.Service.node.node_id) + " " + str(rpyc.Service.node.neighbour_id) + " " + str(rpyc.Service.node.DHT) + " " + str(rpyc.Service.node.neighbour_ip) + " " + str(rpyc.Service.node.node_ip)
         updateDHT(rpyc.Service.node.DHT)
@@ -81,9 +80,9 @@ class MyService(rpyc.Service):
         print "connection not found"
     print rpyc.Service.node.node_ip
     # "exposed_-" allows other nodes to use a connection to call these functions
-    def exposed_connect(self, node_ip):
+    def exposed_connect(self, node_ip, node_port):
         # connects a node to the Chord Scheme
-        print "connected to: " + node_ip
+        print "connected to: " + node_ip + " : " + node_port
 
         # if the current node is the only one in the Chord Scheme use this
         if rpyc.Service.node.node_id == 0 and rpyc.Service.node.neighbour_id == rpyc.Service.node.Max:
@@ -100,8 +99,9 @@ class MyService(rpyc.Service):
             rpyc.Service.node.neighbour_id = middle_id
             updateDHT(bottom_DHT)
             rpyc.Service.node.neighbour_ip = node_ip
+            rpyc.Service.node.neighbour_port = node_port
             #node_id, #neighbour_id, neighbour_ip
-            return middle_id, 0, top_DHT, rpyc.Service.node.node_ip
+            return middle_id, 0, top_DHT, rpyc.Service.node.node_ip, rpyc.Service.node.node_port
         else:
             # if current node is not the node connected to the "start" node
             if rpyc.Service.node.neighbour_id > rpyc.Service.node.node_id:
@@ -150,7 +150,7 @@ class MyService(rpyc.Service):
             # except ReferenceError:
             #     print "REFERENCE ERROR"
             #     return None
-            with open("DHT.txt", "r") as f:
+            with open("DHT" + str(rpyc.Service.node.node_port) + ".txt", "r") as f:
                 for line in f:
                     file_key, file_value = line.partition(":")[::2]
                     if int(file_key.strip()) == key:
@@ -164,7 +164,7 @@ class MyService(rpyc.Service):
                 # rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
                 print "get: " + str(key) + " not found" + " on server " + rpyc.Service.node.node_ip + " with ids: " + str(rpyc.Service.node.node_id) + " : " + str(rpyc.Service.node.neighbour_id)
                 print "passed to: " + rpyc.Service.node.neighbour_ip
-                return rpyc.Service.node.conn.root.get(key, rpyc.Service.node.node_ip)
+                return rpyc.Service.node.conn.root.get(key, rpyc.Service.node.neighbour_ip)
             except socket.error:
                 print "connection error"
                 return None
@@ -184,7 +184,7 @@ class MyService(rpyc.Service):
             # except ReferenceError:
             #     print "Reference Error"
             #     return False
-            with open("DHT.txt", "a") as f:
+            with open("DHT" + str(rpyc.Service.node.node_port) + ".txt", "a") as f:
                 f.write(str(key) + " : " + str(value)+"\n")
                 f.close()
             return True
@@ -194,7 +194,7 @@ class MyService(rpyc.Service):
                 rpyc.Service.node.conn = rpyc.connect(rpyc.Service.node.neighbour_ip, rpyc.Service.node.neighbour_port)
                 print "key: " + str(key) + " not found on server " + rpyc.Service.node.node_ip + " with ids: " + str(rpyc.Service.node.node_id) + " - " + str(rpyc.Service.node.neighbour_id)
                 print "passed to: " + rpyc.Service.node.neighbour_ip
-                return rpyc.Service.node.conn.root.put(key, value, rpyc.Service.node.node_ip)
+                return rpyc.Service.node.conn.root.put(key, value, rpyc.Service.node.neighbour_ip)
                 # return True
             except socket.error:
                 print "connection error"
@@ -204,5 +204,9 @@ class MyService(rpyc.Service):
 if __name__ == "__main__":
     #start the server on the current node
     from rpyc.utils.server import ThreadedServer
-    t = ThreadedServer(MyService, port=18861)
+    p = 18861
+    if len(sys.argv) == 3:
+        print sys.argv
+        p = int(sys.argv[2])
+    t = ThreadedServer(MyService, port=p)
     t.start()
