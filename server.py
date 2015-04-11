@@ -126,14 +126,16 @@ class MyService(rpyc.Service):
             rpyc.Service.node.DHT = bottom_DHT
             # save cur nodes' neighbour's ip
             n_ip = rpyc.Service.node.neighbour_ip
+            n_port = rpyc.Service.node.neighbour_port
             # set cur nodes neighbour as new node
             rpyc.Service.node.neighbour_ip = node_ip
+            rpyc.Service.node.neighbour_port = node_port
             # update cur node DHT with the bottom of DHT
             updateDHT(rpyc.Service.node.DHT)
             # debug message
             print str(rpyc.Service.node.node_id) + " " + str(rpyc.Service.node.neighbour_id) + " " + str(rpyc.Service.node.DHT) + " " + str(rpyc.Service.node.neighbour_ip) + " " + rpyc.Service.node.node_ip
-            #return node_id, neighbour id, DHT, neighbour ip
-            return middle_id, n_id, top_DHT, n_ip
+            #return node_id, neighbour id, DHT, neighbour ip, neighbour port
+            return middle_id, n_id, top_DHT, n_ip , n_port
 
     def exposed_get(self, key, ip):
         # returns the value that key stores
