@@ -6,23 +6,10 @@ import sys
 # TODO finger table - use to find connections if current connection breaks
 # TODO use finger table to decrease time of look up
 
-
-if __name__ == "__main__":
-    if len(sys.argv) >= 1:
-        if sys.argv[1] == "--help":
-            print "python server.py <neighbour ip> <neighbour port> <local port>"
-            sys.exit()
-    else:
-        #start the server on the current node
-        from rpyc.utils.server import ThreadedServer
-        p = 18861
-        print sys.argv
-
-        if len(sys.argv) == 3:
-            print sys.argv
-            p = int(sys.argv[2])
-        t = ThreadedServer(MyService, port=p)
-        t.start()
+if len(sys.argv) >= 1:
+    if sys.argv[1] == "--help":
+        print "python server.py <neighbour ip> <neighbour port> <local port>"
+        sys.exit()
 
 def getDHT():
     # pulls all values from a textfile and puts them into a DHT
@@ -225,3 +212,15 @@ class MyService(rpyc.Service):
             except socket.error:
                 print "connection error"
                 return False
+
+if __name__ == "__main__":
+    #start the server on the current node
+    from rpyc.utils.server import ThreadedServer
+    p = 18861
+    print sys.argv
+
+    if len(sys.argv) == 3:
+        print sys.argv
+        p = int(sys.argv[2])
+    t = ThreadedServer(MyService, port=p)
+    t.start()
