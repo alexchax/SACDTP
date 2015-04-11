@@ -1,7 +1,10 @@
 import rpyc
 import socket
 import sys
-
+# TODO set up finger table
+# TODO find best possible connection rather than any connection
+# TODO finger table - use to find connections if current connection breaks
+# TODO use finger table to decrease time of look up
 def getDHT():
     # pulls all values from a textfile and puts them into a DHT
     DHT = {}
