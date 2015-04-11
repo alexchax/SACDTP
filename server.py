@@ -5,6 +5,25 @@ import sys
 # TODO find best possible connection rather than any connection
 # TODO finger table - use to find connections if current connection breaks
 # TODO use finger table to decrease time of look up
+
+
+if __name__ == "__main__":
+    if len(sys.argv) >= 1:
+        if sys.argv[1] == "--help":
+            print "python server.py <neighbour ip> <neighbour port> <local port>"
+            sys.exit()
+    else:
+        #start the server on the current node
+        from rpyc.utils.server import ThreadedServer
+        p = 18861
+        print sys.argv
+
+        if len(sys.argv) == 3:
+            print sys.argv
+            p = int(sys.argv[2])
+        t = ThreadedServer(MyService, port=p)
+        t.start()
+
 def getDHT():
     # pulls all values from a textfile and puts them into a DHT
     DHT = {}
@@ -48,11 +67,13 @@ class MyService(rpyc.Service):
     rpyc.Service.node = Node()
     rpyc.Service.node.neighbour_ip = socket.gethostbyname(socket.gethostname())
     # arg(1) - ip of the node you want to connect to
-    if len(sys.argv) == 2:
+    if len(sys.argv) >= 2:
         rpyc.Service.node.neighbour_ip = sys.argv[1]
-    if len(sys.argv) == 3:
-        rpyc.Service.node.neighbour_ip = sys.argv[1]
-        rpyc.Service.node.node_port = sys.argv[2]
+    if len(sys.argv) >= 3:
+        rpyc.Service.node.neighbour_port = sys.argv[2]
+    if len(sys.argv) >= 4:
+        rpyc.Servic.node.node_port = sys.argv[3]
+
     rpyc.Service.node.DHT = getDHT()
     print rpyc.Service.node.DHT
     # maximum number of values in the DHT's
@@ -204,14 +225,3 @@ class MyService(rpyc.Service):
             except socket.error:
                 print "connection error"
                 return False
-
-
-if __name__ == "__main__":
-    #start the server on the current node
-    from rpyc.utils.server import ThreadedServer
-    p = 18861
-    if len(sys.argv) == 3:
-        print sys.argv
-        p = int(sys.argv[2])
-    t = ThreadedServer(MyService, port=p)
-    t.start()
