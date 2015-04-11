@@ -53,13 +53,6 @@ class Node:
 class MyService(rpyc.Service):
     rpyc.Service.node = Node()
     rpyc.Service.node.neighbour_ip = socket.gethostbyname(socket.gethostname())
-    # arg(1) - ip of the node you want to connect to
-    if len(sys.argv) >= 2:
-        rpyc.Service.node.neighbour_ip = sys.argv[1]
-    if len(sys.argv) >= 3:
-        rpyc.Service.node.neighbour_port = sys.argv[2]
-    if len(sys.argv) >= 4:
-        rpyc.Servic.node.node_port = sys.argv[3]
 
     rpyc.Service.node.DHT = getDHT()
     print rpyc.Service.node.DHT
@@ -72,8 +65,13 @@ class MyService(rpyc.Service):
     rpyc.Service.node.node_ip = socket.gethostbyname(socket.gethostname())
     # neighbour id - the id of the next node in the DHT
     rpyc.Service.node.neighbour_id = rpyc.Service.node.Max
-    # port that the server is running on - always 18861
-    rpyc.Service.node.neighbour_port = 18861
+    # arg(1) - ip of the node you want to connect to
+    if len(sys.argv) >= 2:
+        rpyc.Service.node.neighbour_ip = sys.argv[1]
+    if len(sys.argv) >= 3:
+        rpyc.Service.node.neighbour_port = sys.argv[2]
+    if len(sys.argv) >= 4:
+        rpyc.Service.node.node_port = sys.argv[3]
 
     print "connecting to: " + str(rpyc.Service.node.neighbour_ip)
     try:
@@ -85,7 +83,7 @@ class MyService(rpyc.Service):
         # debug statement
         print str(rpyc.Service.node.node_id) + " " + str(rpyc.Service.node.neighbour_id) + " " + str(rpyc.Service.node.DHT) + " " + str(rpyc.Service.node.neighbour_ip) + " " + str(rpyc.Service.node.node_ip)
         updateDHT(rpyc.Service.node.DHT)
-        print "connection between: " + rpyc.Service.node.node_ip + " and " + rpyc.Service.node.neighbour_ip + " established"
+        print "connection between: " + rpyc.Service.node.node_ip + " and " + rpyc.Service.node.neighbour_ip + " established" + str(rpyc.Service.node.node_port) + " " + str(rpyc.Service.node.neighbour_port)
     except socket.error:
         # if arg not set or connection is unable to be set dont connect to the DHT
         print "connection not found"
@@ -93,7 +91,7 @@ class MyService(rpyc.Service):
     # "exposed_-" allows other nodes to use a connection to call these functions
     def exposed_connect(self, node_ip, node_port):
         # connects a node to the Chord Scheme
-        print "connected to: " + node_ip + " : " + node_port
+        print "connected to: " + str(node_ip) + " : " + str(node_port)
 
         # if the current node is the only one in the Chord Scheme use this
         if rpyc.Service.node.node_id == 0 and rpyc.Service.node.neighbour_id == rpyc.Service.node.Max:
@@ -219,8 +217,8 @@ if __name__ == "__main__":
     p = 18861
     print sys.argv
 
-    if len(sys.argv) == 3:
+    if len(sys.argv) == 4:
         print sys.argv
-        p = int(sys.argv[2])
+        p = int(sys.argv[3])
     t = ThreadedServer(MyService, port=p)
     t.start()
