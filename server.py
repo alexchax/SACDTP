@@ -7,7 +7,7 @@ import sys
 # TODO finger table - use to find connections if current connection breaks
 # TODO use finger table to decrease time of look up
 
-if len(sys.argv) >= 1:
+if len(sys.argv) >= 2:
     if sys.argv[1] == "--help":
         print "python server.py <neighbour ip> <neighbour port> <local port>"
         sys.exit()
