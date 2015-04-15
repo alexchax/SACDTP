@@ -328,5 +328,9 @@ if __name__ == "__main__":
 
     if len(sys.argv) == 4:
         p = int(sys.argv[3])
-    t = ThreadedServer(MyService, port=p)
-    t.start()
+    try:
+        t = ThreadedServer(MyService, port=p)
+        t.start()
+    except socket.error:
+        print "port already in use"
+        sys.exit()
