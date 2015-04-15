@@ -3,9 +3,9 @@ from rpyc import *
 import sys
 
 def getValue(key, conn):
-    return conn.root.get(key, "localhost")
+    return conn.root.get(key)
 def putValue(key, value, conn):
-    return conn.root.put(key, value, "localhost")
+    return conn.root.put(key, value)
 
 
 def main():
